@@ -8,15 +8,24 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { PageNotFoundComponent } from './shared/PageNotFound/PageNotFound.component';
-import { HeaderComponent } from './shared/header/header.component';
+import { IntroAppComponent } from './Home/intro-app/intro-app.component';
+import { CategoriesAppComponent } from './Home/categories-app/categories-app.component';
+import { FeaturedAppComponent } from './Home/featured-app/featured-app.component';
+import { ArticlesAppComponent } from './Home/articles-app/articles-app.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    IntroAppComponent,
+    CategoriesAppComponent,
+    FeaturedAppComponent,
+    ArticlesAppComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot([
-      { path: 'home', component: HeaderComponent },
+      { path: 'home', component: AppComponent },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '**', component: PageNotFoundComponent },
     ]),
