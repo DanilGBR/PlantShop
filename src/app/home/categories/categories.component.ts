@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { of } from 'rxjs';
+import { Category } from 'src/app/core/interfaces/category';
+import { CategoriesService } from 'src/app/core/services/categories.service';
 
 @Component({
   selector: 'app-categories',
@@ -6,30 +9,17 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
-  plantList: Array<{ id: number; description: string; imageSource: string }> = [
-    {
-      id: 1,
-      description: 'Jungle plants',
-      imageSource: '../../../../assets/categories/plant-jungle.jpg',
-    },
-    {
-      id: 2,
-      description: 'Outdoor plants',
-      imageSource: '../../../../assets/categories/plant-jungle.jpg',
-    },
-    {
-      id: 3,
-      description: 'Indoor plants',
-      imageSource: '../../../../assets/categories/plant-jungle.jpg',
-    },
-    {
-      id: 4,
-      description: 'Bedroom plants',
-      imageSource: '../../../../assets/categories/plant-jungle.jpg',
-    },
-  ];
+  public categories: Category[] = [];
 
-  constructor() {}
+  constructor(private categoriesService: CategoriesService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getCategories();
+  }
+
+  private getCategories(): void {
+    this.categoriesService.getCategories().subscribe((result: Category[]) => {
+      this.categories = result;
+    });
+  }
 }
