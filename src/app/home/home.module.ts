@@ -7,6 +7,7 @@ import { IntroComponent } from './intro/intro.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { FeaturedComponent } from './featured/featured.component';
 import { ArticlesComponent } from './articles/articles.component';
+import { CategoryItemComponent } from './categories/category-item/category-item.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ArticlesComponent } from './articles/articles.component';
     IntroComponent,
     CategoriesComponent,
     FeaturedComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    CategoryItemComponent
   ],
   imports: [
     CommonModule,

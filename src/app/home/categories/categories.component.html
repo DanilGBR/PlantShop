@@ -2,37 +2,8 @@
   <h2 style="text-align: center">Categories</h2>
   <br />
   <div class="row">
-    <div class="col-md-4 px-0">
-      <img
-        src="../../../assets/categories/plant-jungle.jpg"
-        alt="Jungle Plants"
-        class="img-fluid"
-      />
-      <p>Jungle Plants</p>
-    </div>
-    <div>
-      <img
-        src="../../../assets/categories/plant-outdoor.jpg"
-        alt="Outdoor Plants"
-        class="img-fluid"
-      />
-      <p>Outdoor plants</p>
-    </div>
-    <div>
-      <img
-        src="../../../assets/categories/plant-bedroom.jpg"
-        alt="Bedroom plants"
-        class="img-fluid"
-      />
-      <p>Bedroom Plants</p>
-    </div>
-    <div>
-      <img
-        src="../../../assets/categories/plant-indoor.jpg"
-        alt="Indoor plants"
-        class="img-fluid"
-      />
-      <p>Indoor Plants</p>
+    <div class="col" *ngFor="let plant of plantList">
+      <app-category-item [listItem]="plant"></app-category-item>
     </div>
   </div>
 </div>
