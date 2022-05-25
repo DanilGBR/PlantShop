@@ -10,6 +10,7 @@ import { ArticlesComponent } from './articles/articles.component';
 import { CategoryItemComponent } from './categories/category-item/category-item.component';
 import { QuoteComponent } from './quote/quote.component';
 import { FeaturedItemComponent } from './featured/featured-item/featured-item.component';
+import { ArticleComponent } from './articles/article/article.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FeaturedItemComponent } from './featured/featured-item/featured-item.co
     CategoryItemComponent,
     QuoteComponent,
     FeaturedItemComponent,
+    ArticleComponent,
   ],
   imports: [CommonModule, HomeRoutingModule],
 })
