@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { of } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/core/interfaces/category';
 import { CategoriesService } from 'src/app/core/services/categories.service';
 

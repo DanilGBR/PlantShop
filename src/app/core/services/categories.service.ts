@@ -6,11 +6,7 @@ import { Category } from '../interfaces/category';
   providedIn: 'root',
 })
 export class CategoriesService {
-  private plantList: Array<{
-    id: number;
-    description: string;
-    imageSource: string;
-  }> = [
+  private plantCategories: Category[] = [
     {
       id: 1,
       description: 'Jungle plants',
@@ -35,6 +31,6 @@ export class CategoriesService {
   constructor() {}
 
   public getCategories(): Observable<Category[]> {
-    return of(this.plantList);
+    return of(this.plantCategories);
   }
 }
