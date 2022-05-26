@@ -15,17 +15,17 @@ export class CategoriesService {
     {
       id: 2,
       description: 'Outdoor plants',
-      imageSource: '../../../../assets/categories/plant-jungle.jpg',
+      imageSource: '../../../../assets/categories/plant-outdoor.jpg',
     },
     {
       id: 3,
       description: 'Indoor plants',
-      imageSource: '../../../../assets/categories/plant-jungle.jpg',
+      imageSource: '../../../../assets/categories/plant-indoor.jpg',
     },
     {
       id: 4,
       description: 'Bedroom plants',
-      imageSource: '../../../../assets/categories/plant-jungle.jpg',
+      imageSource: '../../../../assets/categories/plant-bedroom.jpg',
     },
   ];
   constructor() {}
