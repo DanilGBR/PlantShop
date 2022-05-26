@@ -6,35 +6,22 @@ img {
 }
 
 a {
-  color: #000000;
+  color: lightgray;
   text-decoration: none;
 }
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
 .cards__item {
-  display: flex;
   padding: 1rem;
 }
 .card {
   background-color: white;
   border-radius: 0.25rem;
-  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: column;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 .card:hover .card__image {
   filter: contrast(100%);
 }
 .card__content {
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
   padding: 1rem;
 }
 .card__image {
@@ -43,7 +30,7 @@ a {
   background-size: cover;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
-  filter: contrast(50%);
+  filter: contrast(70%);
   overflow: hidden;
   position: relative;
   transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
@@ -52,14 +39,6 @@ a {
   content: "";
   display: block;
   padding-top: 56.25%;
-}
-@media (min-width: 40rem) {
-  .card__image::before {
-    padding-top: 66.6%;
-  }
-}
-.card__image--flowers {
-  background-image: url(https://unsplash.it/800/600?image=82);
 }
 .card__image--fence {
   background-image: url(https://unsplash.it/800/600?image=59);
