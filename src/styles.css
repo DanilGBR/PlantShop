@@ -1,3 +1,11 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  padding-bottom: 400px;
+}
+
 @font-face {
   font-family: Playfair;
   src: url(assets/font/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf)
