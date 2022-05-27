@@ -8,16 +8,16 @@ import { Article } from '../interfaces/article';
 export class ArticlesService {
   private articles: Article[] = [
     {
-      id: 1,
       edition: 1,
       author: 'Gabriel',
       title: 'Za best article in za world',
+      image: '../../../assets/articles/how-to-grow-herbs.jpg',
     },
     {
-      id: 2,
       edition: 2,
       author: 'Teodora',
       title: 'Water thy plants slave',
+      image: '../../../assets/articles/sweet-peppers-indors-growing.jpg',
     },
   ];
 

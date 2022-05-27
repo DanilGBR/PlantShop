@@ -1,0 +1,43 @@
+img {
+  width: 300px;
+  height: 500px;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  object-fit: cover;
+}
+
+.name-style {
+  position: relative;
+  display: block;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  color: #9999998f;
+  font-size: 0.8rem;
+  text-decoration: none;
+  text-align: left;
+}
+
+.price-style {
+  position: relative;
+  display: block;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  font-size: 1.5rem;
+  text-decoration: none;
+  text-align: left;
+}
+
+.image-hover {
+  cursor: pointer;
+  filter: contrast(80%);
+  transition: filter 0.2s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+}
+
+.image-hover:hover {
+  filter: contrast(100%);
+  size: 1.2rem;
+}
