@@ -1,0 +1,16 @@
+.quote {
+  text-align: center;
+  /* word-wrap: 10px; */
+  margin: 10rem 0 10rem 0;
+  padding-left: 25%;
+  padding-right: 25%;
+}
+
+@media screen and (max-width: 1000px) {
+  .quote {
+    text-align: center;
+    margin: 10rem 0 10rem 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Category } from 'src/app/core/interfaces/category';
 
 @Component({
   selector: 'app-category-item',
@@ -7,11 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CategoryItemComponent implements OnInit {
   @Input()
-  listItem!: {
-    id: number;
-    description: string;
-    imageSource: string;
-  };
+  item!: Category;
 
   constructor() {}
 

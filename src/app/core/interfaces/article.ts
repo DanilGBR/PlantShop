@@ -1,6 +1,6 @@
 export interface Article {
   id: number;
-  editions: number;
+  edition: number;
   author: string;
   title: string;
 }

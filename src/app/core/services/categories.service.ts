@@ -6,11 +6,7 @@ import { Category } from '../interfaces/category';
   providedIn: 'root',
 })
 export class CategoriesService {
-  private plantList: Array<{
-    id: number;
-    description: string;
-    imageSource: string;
-  }> = [
+  private plantCategories: Category[] = [
     {
       id: 1,
       description: 'Jungle plants',
@@ -19,22 +15,22 @@ export class CategoriesService {
     {
       id: 2,
       description: 'Outdoor plants',
-      imageSource: '../../../../assets/categories/plant-jungle.jpg',
+      imageSource: '../../../../assets/categories/plant-outdoor.jpg',
     },
     {
       id: 3,
       description: 'Indoor plants',
-      imageSource: '../../../../assets/categories/plant-jungle.jpg',
+      imageSource: '../../../../assets/categories/plant-indoor.jpg',
     },
     {
       id: 4,
       description: 'Bedroom plants',
-      imageSource: '../../../../assets/categories/plant-jungle.jpg',
+      imageSource: '../../../../assets/categories/plant-bedroom.jpg',
     },
   ];
   constructor() {}
 
   public getCategories(): Observable<Category[]> {
-    return of(this.plantList);
+    return of(this.plantCategories);
   }
 }

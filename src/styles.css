@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: Playfair;
+  src: url(assets/font/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf)
+    format("truetype");
+}

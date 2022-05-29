@@ -1,1 +1,7 @@
-<app-article></app-article>
+<div class="container">
+  <div class="row margin-top: 10rem">
+    <div class="col" *ngFor="let article of articles">
+      <app-article [item]="article"></app-article>
+    </div>
+  </div>
+</div>
