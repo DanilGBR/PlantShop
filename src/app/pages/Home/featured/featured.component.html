@@ -1,6 +1,6 @@
-<div class="container d-flex justify-content-between">
-  <div class="row margin-top: 10px margin-bottom: 10px">
-    <div class="col-md-3">
+<div class="container d-flex">
+  <div class="row mb-5 justify-content-between">
+    <div class="col-md-2">
       <h2 class="text-align-left">Featured</h2>
       <p>
         Our plants are 100% organic, we don't use pesticides or harmful
@@ -8,9 +8,7 @@
       </p>
       <br />
       <p>But please don't eat them</p>
-      <button type="button" class="btn btn-outline-secondary btn-sm">
-        Shop Now
-      </button>
+      <button type="button">Shop all Favorites</button>
     </div>
     <div class="col-md-3" *ngFor="let feature of featuredList">
       <app-featured-item [listItem]="feature"></app-featured-item>

@@ -1,56 +1,55 @@
+* {
+  box-sizing: border-box;
+}
 img {
+  width: 600px;
   height: auto;
-  min-width: 600px;
-  max-width: auto;
-  vertical-align: middle;
+  object-fit: cover;
 }
-
-a {
-  color: lightgray;
-  text-decoration: none;
-}
-.cards__item {
-  padding: 1rem;
-}
-.card {
+.card-article {
   background-color: white;
   border-radius: 0.25rem;
   box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
+  cursor: pointer;
 }
-.card:hover .card__image {
+.card-article:hover .card-image {
   filter: contrast(100%);
 }
-.card__content {
-  padding: 1rem;
+.card-content {
+  padding: 0rem 1rem 1rem 1rem;
 }
-.card__image {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.card-image {
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
   filter: contrast(70%);
-  overflow: hidden;
-  position: relative;
-  transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+  transition: filter 0.3s cubic-bezier(0.43, 0.41, 0.22, 0.91);
 }
-.card__image::before {
-  content: "";
-  display: block;
-  padding-top: 56.25%;
-}
-.card__image--fence {
-  background-image: url(https://unsplash.it/800/600?image=59);
-}
-.card__title {
+.card-title {
   color: #696969;
   font-size: 1.25rem;
   font-weight: 300;
   text-decoration: none;
 }
-.card__text {
+.card-text {
   font-size: 0.7rem;
   margin: 0;
   text-decoration: none;
+}
+.card-info-detail {
+  color: darkgray;
+  font-size: small;
+  text-align: left;
+}
+.card-info {
+  position: relative;
+  border-radius: 0.25rem;
+  background-color: #ffffff;
+  padding: 0.25rem;
+  margin: 0;
+  z-index: 1;
+  width: 150px;
+  height: 60px;
+  display: inline-block;
+  top: -100px;
+  left: 500px;
 }
