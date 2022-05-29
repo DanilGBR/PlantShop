@@ -8,7 +8,9 @@ import { CategoriesComponent } from './categories/categories.component';
 import { FeaturedComponent } from './featured/featured.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { CategoryItemComponent } from './categories/category-item/category-item.component';
-
+import { QuoteComponent } from './quote/quote.component';
+import { FeaturedItemComponent } from './featured/featured-item/featured-item.component';
+import { ArticleComponent } from './articles/article/article.component';
 
 @NgModule({
   declarations: [
@@ -17,11 +19,11 @@ import { CategoryItemComponent } from './categories/category-item/category-item.
     CategoriesComponent,
     FeaturedComponent,
     ArticlesComponent,
-    CategoryItemComponent
+    CategoryItemComponent,
+    QuoteComponent,
+    FeaturedItemComponent,
+    ArticleComponent,
   ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule
-  ]
+  imports: [CommonModule, HomeRoutingModule],
 })
-export class HomeModule { }
+export class HomeModule {}

@@ -1,0 +1,19 @@
+<div class="container d-flex justify-content-between">
+  <div class="row">
+    <div class="col-md-3">
+      <h2 class="text-align-left">Featured</h2>
+      <p>
+        Our plants are 100% organic, we don't use pesticides or harmful
+        chemicals.
+      </p>
+      <br />
+      <p>But please don't eat them</p>
+      <button type="button" class="btn btn-outline-secondary btn-sm">
+        Shop Now
+      </button>
+    </div>
+    <div class="col-md-3" *ngFor="let feature of featuredList">
+      <app-featured-item [listItem]="feature"></app-featured-item>
+    </div>
+  </div>
+</div>

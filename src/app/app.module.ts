@@ -7,13 +7,18 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { HomeComponent } from './pages/Home/home/home.component';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule,
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: '**', component: PageNotFoundComponent },
+    ]),
     SharedModule,
     CoreModule,
   ],

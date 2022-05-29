@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-featured',
+  templateUrl: './featured.component.html',
+  styleUrls: ['./featured.component.css'],
 })
-export class AppComponent {
-  plantList: Array<{
+export class FeaturedComponent implements OnInit {
+  featuredList: Array<{
     id: number;
     description: string;
     imageSource: string;
@@ -31,4 +31,8 @@ export class AppComponent {
       price: 100,
     },
   ];
+
+  constructor() {}
+
+  ngOnInit(): void {}
 }

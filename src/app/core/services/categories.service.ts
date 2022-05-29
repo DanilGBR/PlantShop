@@ -1,12 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { Category } from '../interfaces/category';
 
-@Component({
-  selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css'],
+@Injectable({
+  providedIn: 'root',
 })
-export class CategoriesComponent implements OnInit {
-  plantList: Array<{ id: number; description: string; imageSource: string }> = [
+export class CategoriesService {
+  private plantList: Array<{
+    id: number;
+    description: string;
+    imageSource: string;
+  }> = [
     {
       id: 1,
       description: 'Jungle plants',
@@ -28,8 +32,9 @@ export class CategoriesComponent implements OnInit {
       imageSource: '../../../../assets/categories/plant-jungle.jpg',
     },
   ];
-
   constructor() {}
 
-  ngOnInit(): void {}
+  public getCategories(): Observable<Category[]> {
+    return of(this.plantList);
+  }
 }
