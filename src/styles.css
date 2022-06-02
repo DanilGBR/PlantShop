@@ -3,6 +3,7 @@ html {
   min-height: 100%;
 }
 body {
+  padding-top: 70px;
   padding-bottom: 400px;
 }
 
