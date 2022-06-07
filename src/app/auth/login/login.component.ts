@@ -31,4 +31,8 @@ export class LoginComponent implements OnInit {
       this.authService.setLoginToken(token);
     });
   }
+
+  public logout(): void {
+    this.authService.logout();
+  }
 }
