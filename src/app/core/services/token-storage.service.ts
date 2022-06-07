@@ -9,7 +9,7 @@ export class TokenStorageService {
 
   constructor() {}
 
-  public getToken(): string | null {
+  public getToken(): any {
     return sessionStorage.getItem(this.TOKEN_KEY);
   }
 
