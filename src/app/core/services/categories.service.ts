@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Category } from '../interfaces/category';
@@ -6,31 +7,22 @@ import { Category } from '../interfaces/category';
   providedIn: 'root',
 })
 export class CategoriesService {
-  private plantCategories: Category[] = [
-    {
-      id: 1,
-      description: 'Jungle plants',
-      imageSource: '../../../../assets/categories/plant-jungle.jpg',
-    },
-    {
-      id: 2,
-      description: 'Outdoor plants',
-      imageSource: '../../../../assets/categories/plant-outdoor.jpg',
-    },
-    {
-      id: 3,
-      description: 'Indoor plants',
-      imageSource: '../../../../assets/categories/plant-indoor.jpg',
-    },
-    {
-      id: 4,
-      description: 'Bedroom plants',
-      imageSource: '../../../../assets/categories/plant-bedroom.jpg',
-    },
-  ];
-  constructor() {}
+  private plantCategories: Category[] = [];
+  constructor(private http: HttpClient) {}
 
-  public getCategories(): Observable<Category[]> {
-    return of(this.plantCategories);
+  public getCategories() {
+    return this.http
+      .get<{ message: string; categories: Category[] }>(
+        'http://localhost:3000/api/categories'
+      )
+      .subscribe(
+        (postData) => {
+          this.plantCategories = postData.categories;
+          return of(this.plantCategories);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }
