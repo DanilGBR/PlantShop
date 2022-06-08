@@ -7,8 +7,7 @@ import { Category } from 'src/app/core/interfaces/category';
   styleUrls: ['./category-item.component.css'],
 })
 export class CategoryItemComponent implements OnInit {
-  @Input()
-  item!: Category;
+  @Input() item!: Category;
 
   constructor() {}
 

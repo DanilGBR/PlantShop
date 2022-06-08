@@ -95,5 +95,8 @@
       }
     }
   },
-  "defaultProject": "PlantShop"
+  "defaultProject": "PlantShop",
+  "cli": {
+    "analytics": false
+  }
 }
