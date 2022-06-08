@@ -18,7 +18,7 @@ export class TokenStorageService {
   }
 
   getUser(): any {
-    return JSON.parse(sessionStorage.getItem(this.USER_KEY));
+    // return JSON.parse(sessionStorage.getItem(this.USER_KEY));
   }
 
   setUser(user: any): void {

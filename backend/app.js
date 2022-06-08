@@ -3,6 +3,15 @@ const express = require("express");
 const app = express();
 
 app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, PATCH, DELETE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin ,Content-Type, Authorization, X-Requested-With, Accept"
+  );
   next();
 });
 
@@ -11,7 +20,7 @@ app.use("/api/categories", (req, res, next) => {
     {
       id: 1,
       description: "Jungle plants",
-      imageSource: "../../../../assets/categories/plant-jungle.jpg",
+      imageSource: "",
     },
     {
       id: 2,

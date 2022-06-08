@@ -16,9 +16,7 @@ export class CategoriesComponent implements OnInit {
     this.getCategories();
   }
 
-  private getCategories(): void {
-    this.categoriesService.getCategories().subscribe((result: Category[]) => {
-      this.categories = result;
-    });
+  private getCategories() {
+    return this.categoriesService.getCategories();
   }
 }
