@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { Category } from 'src/app/core/interfaces/category';
 import { CategoriesService } from 'src/app/core/services/categories.service';
 
@@ -8,15 +9,18 @@ import { CategoriesService } from 'src/app/core/services/categories.service';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
-  public categories: Category[] = [];
-
+  public categories$!: Observable<Category[]>;
   constructor(private categoriesService: CategoriesService) {}
 
   ngOnInit(): void {
-    this.getCategories();
+    // this.categories$ = this.getCategories();
+    this.categories$ = this.getCategories().pipe(map((res) => res.categories));
   }
 
-  private getCategories() {
+  private getCategories(): Observable<{
+    message: string;
+    categories: Category[];
+  }> {
     return this.categoriesService.getCategories();
   }
 }
