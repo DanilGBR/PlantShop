@@ -2,7 +2,7 @@
   <h2 class="text-center mt-5 mb-2">Categories</h2>
   <br />
   <div class="row">
-    <div class="col-md-3" *ngFor="let category of categories">
+    <div class="col-md-3" *ngFor="let category of categories$ | async">
       <app-category-item [item]="category"></app-category-item>
     </div>
   </div>
