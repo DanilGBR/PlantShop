@@ -19,7 +19,7 @@ export class AuthService {
     // const loginResponse = { token: 'myToken' };
     // return of(loginResponse);
     return this.apiService
-      .postTypeRequest('auth/login', {
+      .post('auth/login', {
         email: credentials.email,
         password: credentials.password,
       })
@@ -39,7 +39,7 @@ export class AuthService {
   }
 
   register(user: any) {
-    return this.apiService.postTypeRequest('auth/register', {
+    return this.apiService.post('auth/register', {
       fullName: user.fullName,
       email: user.email,
       password: user.password,

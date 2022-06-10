@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mt-5 mb-5 justify-content-between">
-    <div class="col-md-6" *ngFor="let article of articles">
+    <div class="col-md-6" *ngFor="let article of articles$ | async">
       <app-article [item]="article"></app-article>
     </div>
   </div>
