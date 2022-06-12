@@ -1,31 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Article } from '../interfaces/article';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticlesService {
-  private articles: Article[] = [
-    {
-      edition: 1,
-      author: 'Gabriel',
-      title: 'Za best article in za world',
-      image: '../../../assets/articles/how-to-grow-herbs.jpg',
-    },
-    {
-      edition: 2,
-      author: 'Teodora',
-      title: 'Water thy plants slave',
-      image: '../../../assets/articles/sweet-peppers-indors-growing.jpg',
-    },
-  ];
+  constructor(private _api: ApiService) {}
 
-  constructor() {}
-
-  public getArticles(): Observable<Article[]> {
+  public getArticles(): Observable<{ message: string; articles: Article[] }> {
     {
-      return of(this.articles);
+      return this._api.get('articles');
     }
   }
 }

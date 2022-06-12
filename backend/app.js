@@ -49,4 +49,27 @@ app.use("/api/categories", (req, res, next) => {
   });
 });
 
+app.use("/api/articles", (req, res, next) => {
+  const articles = [
+    {
+      edition: 1,
+      author: "Jungle plants",
+      title: "Jungle plants",
+      image:
+        "https://www.mydomaine.com/thmb/Ts6h_mVlXPwcs0WGbaPdkdJ5Bj8=/500x350/filters:no_upscale():max_bytes(150000):strip_icc()/buyingavintagemoroccanrug5-1fa45485cd104477b67fb80501d3c961.jpeg",
+    },
+    {
+      edition: 2,
+      author: "Outdoor plants",
+      title: "Outdoor plants",
+      image:
+        "https://5.imimg.com/data5/WX/YO/LT/SELLER-90188891/house-plants-500x500.jpg",
+    },
+  ];
+  res.status(200).json({
+    MessageChannel: "Articles fetched successfully",
+    articles: articles,
+  });
+});
+
 module.exports = app;
