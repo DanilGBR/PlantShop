@@ -27,7 +27,6 @@ export class AuthService {
           };
           this.tokenStorageService.setLoginToken(response.token);
           this.tokenStorageService.setUser(response);
-          return user;
         })
       );
   }
