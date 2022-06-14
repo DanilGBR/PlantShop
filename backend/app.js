@@ -1,3 +1,6 @@
+require("./config/config");
+require("./models/db");
+
 const express = require("express");
 const bodyParser = require("body-parser");
 var usersController = require("./controllers/usersController.js");
