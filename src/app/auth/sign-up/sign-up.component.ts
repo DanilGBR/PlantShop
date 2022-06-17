@@ -28,11 +28,14 @@ export class SignUpComponent implements OnInit {
 
   register() {
     const credentials = this.form.getRawValue();
-    this.auth.register(credentials).subscribe((response: any) => {
-      const token = response.token;
-      this.auth.setLoginToken(token);
-      this.router.navigate(['']);
-    });
+    credentials.isAdmin = false;
+
+    console.log(credentials);
+    // this.auth.register(credentials).subscribe((response: any) => {
+    //   const token = response.token;
+    //   this.auth.setLoginToken(token);
+    //   this.router.navigate(['']);
+    // });
   }
 
   resetForm() {
