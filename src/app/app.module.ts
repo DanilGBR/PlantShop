@@ -15,6 +15,7 @@ import { OurStoryComponent } from './pages/About/our-story/our-story.component';
 import { CareersComponent } from './pages/About/careers/careers.component';
 import { PressComponent } from './pages/About/press/press.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

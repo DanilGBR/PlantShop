@@ -13,7 +13,6 @@ export class CategoriesComponent implements OnInit {
   constructor(private categoriesService: CategoriesService) {}
 
   ngOnInit(): void {
-    // this.categories$ = this.getCategories();
     this.categories$ = this.getCategories().pipe(map((res) => res.categories));
   }
 

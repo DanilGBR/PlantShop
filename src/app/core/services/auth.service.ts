@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { LoginPayload } from '../interfaces/loginPayload';
+import { User } from '../interfaces/user';
 import { ApiService } from './api.service';
 import { TokenStorageService } from './token-storage.service';
 
@@ -21,21 +22,18 @@ export class AuthService {
       })
       .pipe(
         map((response: any) => {
-          // let user = {
-          //   email: credentials.email,
-          //   token: response.token,
-          // };
           this.tokenStorageService.setLoginToken(response.token);
           this.tokenStorageService.setUser(response);
         })
       );
   }
 
-  register(user: any) {
+  register(user: User) {
     return this._api.post('auth/register', {
       fullName: user.fullName,
       email: user.email,
       password: user.password,
+      isAdmin: false, // is admin is false by default for now
     });
   }
 
