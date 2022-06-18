@@ -15,13 +15,12 @@
   <!-- E-mail -->
   <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail"
     formControlName="email" required>
+  <app-validation-messages [control]="form.controls['email']" controlName="email"></app-validation-messages>
 
   <!-- Password -->
   <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
     aria-describedby="defaultRegisterFormPasswordHelpBlock" formControlName="password" required>
-  <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-    At least 8 characters, 1 digit and 1 symbol
-  </small>
+  <app-validation-messages [control]="form.controls['password']" controlName="password"></app-validation-messages>
 
   <hr>
 
