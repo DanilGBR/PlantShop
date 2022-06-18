@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-var { user } = require("../models/user.model");
+var { User } = require("../models/user.model");
 
-router.get("/", (req, res) => {
-  user.find((err, docs) => {
+router.login = (req, res) => {
+  User.find((err, docs) => {
     if (!err) {
       res.send(docs);
     } else {
@@ -13,25 +13,26 @@ router.get("/", (req, res) => {
       );
     }
   });
-});
+};
 
-router.post("/", (req, res) => {
-  var User = new user({
-    fullName: req.body.name,
+router.register = (req, res, next) => {
+  var user = new User({
+    fullName: req.body.fullName,
     email: req.body.email,
     password: req.body.password,
-    phone: req.body.phone,
     isAdmin: req.body.isAdmin,
   });
-  User.save()
-    .then((data) => {
-      return res.status(200).send(data);
-    })
-    .catch((error) => {
-      return res.status(500).send({
-        error: error,
-      });
-    });
-});
+  user.save((err, doc) => {
+    if (!err) {
+      res.send(doc);
+    } else {
+      if (err.code == 11000) {
+        res.status(422).send("Duplicate Email Found");
+      } else {
+        return next(err);
+      }
+    }
+  });
+};
 
 module.exports = router;
