@@ -21,10 +21,10 @@ export class AuthService {
       })
       .pipe(
         map((response: any) => {
-          let user = {
-            email: credentials.email,
-            token: response.token,
-          };
+          // let user = {
+          //   email: credentials.email,
+          //   token: response.token,
+          // };
           this.tokenStorageService.setLoginToken(response.token);
           this.tokenStorageService.setUser(response);
         })

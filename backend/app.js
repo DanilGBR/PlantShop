@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+var usersController = require("./controllers/usersController.js");
 
 const app = express();
 
@@ -84,5 +85,7 @@ app.post("/api/login", (req, res, next) => {
     user: user,
   });
 });
+
+app.use("/users", usersController);
 
 module.exports = app;
