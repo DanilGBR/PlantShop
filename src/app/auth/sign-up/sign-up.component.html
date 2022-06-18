@@ -9,7 +9,7 @@
       <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Full name"
         formControlName="fullName" required>
     </div>
-    <app-validation-messages [form]="form"></app-validation-messages>
+    <app-validation-messages [control]="form.controls['fullName']" controlName="fullName"></app-validation-messages>
   </div>
 
   <!-- E-mail -->

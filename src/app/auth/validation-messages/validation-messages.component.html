@@ -1,3 +1,3 @@
-<div *ngFor="let error of error_messages.fullName">
-  <p *ngIf=" getErrorMessage('fullName')">{{message}}</p>
+<div *ngFor="let error of validationMessages[controlName]">
+  <p *ngIf="control.hasError(error.type) && control.dirty || control.touched">{{error.type}}</p>
 </div>
