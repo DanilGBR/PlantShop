@@ -10,24 +10,28 @@ import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  public form: FormGroup;
+  public registerForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private auth: AuthService,
     private router: Router
   ) {
-    this.form = this.formBuilder.group({
-      fullName: [null, [Validators.required, Validators.minLength(3)]],
-      email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, CustomValidators.password]],
-    });
+    this.registerForm = this.formBuilder.group(
+      {
+        fullName: [null, [Validators.required, Validators.minLength(3)]],
+        email: [null, [Validators.required, Validators.email]],
+        password: [null, [Validators.required, CustomValidators.password]],
+        confirmPassword: [null, [Validators.required]],
+      },
+      CustomValidators.mustMatch('password', 'confirmPassword')
+    );
   }
 
   ngOnInit() {}
 
-  register() {
-    const credentials = this.form.getRawValue();
+  onRegister() {
+    const credentials = this.registerForm.getRawValue();
     credentials.isAdmin = false;
 
     console.log(credentials);
@@ -39,6 +43,6 @@ export class SignUpComponent implements OnInit {
   }
 
   resetForm() {
-    this.form.reset();
+    this.registerForm.reset();
   }
 }

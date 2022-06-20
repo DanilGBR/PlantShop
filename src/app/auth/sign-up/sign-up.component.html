@@ -1,31 +1,80 @@
 <!-- Default form register -->
-<form [formGroup]="form" (ngSubmit)="register()" class=" text-center border border-light p-5" action="#!">
-
+<form
+  [formGroup]="registerForm"
+  (ngSubmit)="onRegister()"
+  class="text-center border border-light p-5"
+  action="#!"
+>
   <p class="h4 mb-4">Sign up</p>
 
   <div class="form-row mb-4">
     <div class="col">
       <!-- Registration Name -->
-      <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Full name"
-        formControlName="fullName" required>
+      <input
+        type="text"
+        id="defaultRegisterFormFirstName"
+        class="form-control"
+        placeholder="Full name"
+        formControlName="fullName"
+      />
     </div>
-    <app-validation-messages [control]="form.controls['fullName']" controlName="fullName"></app-validation-messages>
+    <app-validation-messages
+      [control]="registerForm.controls['fullName']"
+      controlName="fullName"
+    ></app-validation-messages>
   </div>
 
   <!-- E-mail -->
-  <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail"
-    formControlName="email" required>
-  <app-validation-messages [control]="form.controls['email']" controlName="email"></app-validation-messages>
+  <input
+    type="email"
+    id="defaultRegisterFormEmail"
+    class="form-control mb-4"
+    placeholder="E-mail"
+    formControlName="email"
+  />
+  <app-validation-messages
+    [control]="registerForm.controls['email']"
+    controlName="email"
+  ></app-validation-messages>
 
   <!-- Password -->
-  <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password"
-    aria-describedby="defaultRegisterFormPasswordHelpBlock" formControlName="password" required>
-  <app-validation-messages [control]="form.controls['password']" controlName="password"></app-validation-messages>
+  <input
+    type="password"
+    id="defaultRegisterFormPassword"
+    class="form-control"
+    placeholder="Password"
+    aria-describedby="defaultRegisterFormPasswordHelpBlock"
+    formControlName="password"
+  />
+  <app-validation-messages
+    [control]="registerForm.controls['password']"
+    controlName="password"
+  ></app-validation-messages>
 
-  <hr>
+  <!-- Confirm Password -->
+  <input
+    type="password"
+    id="defaultRegisterFormPassword"
+    class="form-control"
+    placeholder="Confirm Password"
+    aria-describedby="defaultRegisterFormPasswordHelpBlock"
+    formControlName="confirmPassword"
+  />
+  <app-validation-messages
+    [control]="registerForm.controls['confirmPassword']"
+    controlName="confirmPassword"
+  ></app-validation-messages>
+
+  <hr />
 
   <!-- Sign up button -->
-  <button class="btn btn-info my-4 btn-block" type="submit" [disabled]="!form.valid">Register</button>
+  <button
+    class="btn btn-info my-4 btn-block"
+    type="submit"
+    [disabled]="registerForm.invalid"
+  >
+    Register
+  </button>
 
   <!-- ! for future use -->
   <!-- Social register
@@ -36,12 +85,13 @@
   <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
   <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a> -->
 
-  <hr>
+  <hr />
 
   <!-- Terms of service -->
-  <p>By clicking
-    <em>Sign up</em> you agree to our
+  <p>
+    By clicking <em>Sign up</em> you agree to our
     <a href="" target="_blank">terms of service</a>
-
+  </p>
 </form>
+
 <!-- Default form register -->
