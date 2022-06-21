@@ -1,3 +1,4 @@
+const { rejects } = require("assert");
 const express = require("express");
 const router = express.Router();
 
@@ -16,21 +17,27 @@ router.login = (req, res) => {
 };
 
 router.register = (req, res, next) => {
-  var user = new User({
-    fullName: req.body.fullName,
-    email: req.body.email,
-    password: req.body.password,
-    isAdmin: req.body.isAdmin,
-  });
-  user.save((err, doc) => {
-    if (!err) {
-      res.send(doc);
+  bcrypt.hash(req.body.password, 10, (err, hash) => {
+    if (err) {
+      return res.status(400).json({ error: err });
     } else {
-      if (err.code == 11000) {
-        res.status(422).send("Duplicate Email Found");
-      } else {
-        return next(err);
-      }
+      var user = new User({
+        fullName: req.body.fullName,
+        email: req.body.email,
+        password: req.body.password,
+        isAdmin: req.body.isAdmin,
+      });
+      user.save((err, doc) => {
+        if (!err) {
+          res.send(doc);
+        } else {
+          if (err.code == 11000) {
+            res.status(422).send("Duplicate Email Found");
+          } else {
+            return next(err);
+          }
+        }
+      });
     }
   });
 };
