@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers';
 
@@ -10,27 +15,44 @@ import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  public form: FormGroup;
+  public registerForm: FormGroup = new FormGroup(
+    {
+      fullName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.pattern(
+          /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/
+        ),
+      ]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [
+        Validators.required,
+        CustomValidators.passwordFormat,
+      ]),
+      confirmPassword: new FormControl('', [Validators.required]),
+    },
+    CustomValidators.passwordMatch('password', 'confirmPassword')
+  );
 
   constructor(
     private formBuilder: FormBuilder,
     private auth: AuthService,
     private router: Router
-  ) {
-    this.form = this.formBuilder.group({
-      fullName: [null, [Validators.required, Validators.minLength(3)]],
-      email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, CustomValidators.password]],
-    });
-  }
+  ) {}
 
   ngOnInit() {}
 
-  register() {
-    const credentials = this.form.getRawValue();
+  onRegister() {
+    console.log(this.registerForm);
+    console.log(this.registerForm.controls['fullName'].errors);
+    console.log(this.registerForm.controls['email'].errors);
+    console.log(this.registerForm.controls['password'].errors);
+    console.log(this.registerForm.controls['confirmPassword'].errors);
+
+    const credentials = this.registerForm.getRawValue();
     credentials.isAdmin = false;
 
-    console.log(credentials);
+    // console.log(credentials);
     // this.auth.register(credentials).subscribe((response: any) => {
     //   const token = response.token;
     //   this.auth.setLoginToken(token);
@@ -39,6 +61,6 @@ export class SignUpComponent implements OnInit {
   }
 
   resetForm() {
-    this.form.reset();
+    this.registerForm.reset();
   }
 }

@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import error_messages, { ValidationMessagesType } from './validation-messages';
+import validationMessages, {
+  ValidationMessagesType,
+} from './validation-messages';
 
 @Component({
   selector: 'app-validation-messages',
@@ -9,7 +11,7 @@ import error_messages, { ValidationMessagesType } from './validation-messages';
 })
 export class ValidationMessagesComponent implements OnInit {
   public message: string = '';
-  public validationMessages: ValidationMessagesType = error_messages;
+  public validationMessages: ValidationMessagesType = validationMessages;
 
   @Input() control!: AbstractControl;
   @Input() controlName: string = '';
@@ -17,6 +19,4 @@ export class ValidationMessagesComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  testErrorMessage() {}
 }

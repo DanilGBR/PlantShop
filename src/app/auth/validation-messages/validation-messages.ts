@@ -2,7 +2,7 @@ export interface ValidationMessagesType {
   [key: string]: { type: string; message: string }[];
 }
 
-const error_messages: ValidationMessagesType = {
+const validationMessages: ValidationMessagesType = {
   fullName: [
     { type: 'required', message: 'Full name is required' },
     {
@@ -10,25 +10,17 @@ const error_messages: ValidationMessagesType = {
       message: 'Full name must be at least 5 characters long',
     },
     {
-      type: 'maxLength',
-      message: 'Full name cannot be more than 25 characters long',
-    },
-    {
       type: 'pattern',
       message: 'Your full name must contain only letters',
-    },
-    {
-      type: 'validUsername',
-      message: 'Your full name has already been taken',
     },
   ],
   email: [
     { type: 'required', message: 'Email is required' },
-    { type: 'pattern', message: 'Enter a valid email' },
+    { type: 'email', message: 'Enter a valid email' },
   ],
-  confirm_password: [
+  confirmPassword: [
     { type: 'required', message: 'Confirm password is required' },
-    { type: 'areEqual', message: 'Password mismatch' },
+    { type: 'passwordMismatch', message: 'Password mismatch' },
   ],
   password: [
     { type: 'required', message: 'Password is required' },
@@ -37,11 +29,10 @@ const error_messages: ValidationMessagesType = {
       message: 'Password must be at least 5 characters long',
     },
     {
-      type: 'pattern',
+      type: 'passwordFormat',
       message:
         'Your password must contain at least one uppercase, one lowercase, and one number',
     },
   ],
-  terms: [{ type: 'pattern', message: 'You must accept terms and conditions' }],
 };
-export default error_messages;
+export default validationMessages;
