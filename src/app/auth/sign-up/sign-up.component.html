@@ -12,7 +12,6 @@
       <!-- Registration Name -->
       <input
         type="text"
-        id="defaultRegisterFormFirstName"
         class="form-control"
         placeholder="Full name"
         formControlName="fullName"
@@ -27,7 +26,6 @@
   <!-- E-mail -->
   <input
     type="email"
-    id="defaultRegisterFormEmail"
     class="form-control mb-4"
     placeholder="E-mail"
     formControlName="email"
@@ -40,10 +38,8 @@
   <!-- Password -->
   <input
     type="password"
-    id="defaultRegisterFormPassword"
     class="form-control"
     placeholder="Password"
-    aria-describedby="defaultRegisterFormPasswordHelpBlock"
     formControlName="password"
   />
   <app-validation-messages
@@ -54,10 +50,8 @@
   <!-- Confirm Password -->
   <input
     type="password"
-    id="defaultRegisterFormPassword"
     class="form-control"
     placeholder="Confirm Password"
-    aria-describedby="defaultRegisterFormPasswordHelpBlock"
     formControlName="confirmPassword"
   />
   <app-validation-messages
@@ -68,13 +62,7 @@
   <hr />
 
   <!-- Sign up button -->
-  <button
-    class="btn btn-info my-4 btn-block"
-    type="submit"
-    [disabled]="registerForm.invalid"
-  >
-    Register
-  </button>
+  <button class="btn btn-info my-4 btn-block" type="submit">Register</button>
 
   <!-- ! for future use -->
   <!-- Social register

@@ -1,5 +1,7 @@
 <span *ngFor="let validation of validationMessages[controlName]">
-  <span *ngIf="control.hasError(validation.type) && control.dirty || control.touched"
-    class="text-danger font-weight-light">{{validation.message}}!
+  <span
+    *ngIf="control.hasError(validation.type) && control.dirty"
+    class="text-danger font-weight-light"
+    >{{ validation.message }}!
   </span>
 </span>
