@@ -3,7 +3,6 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers';
-import StorageHelper from 'src/app/core/helpers/storage.helpers';
 
 @Component({
   selector: 'app-sign-up',
@@ -45,11 +44,20 @@ export class SignUpComponent implements OnInit {
     // console.log(credentials);
 
     if (!this.registerForm.invalid) {
-      this.auth.register(credentials).subscribe((response: any) => {
-        StorageHelper.saveToken(response);
-        this.auth.setLoginToken(credentials);
-        this.router.navigate(['']);
-      });
+      this.auth.register(credentials).subscribe(
+        (res) => {
+          this.auth.setLoginToken(credentials);
+          this.router.navigate(['']);
+        },
+        (err) => {
+          console.error(err);
+        },
+        () => {
+          console.log('request completed successfully');
+        }
+      );
+    } else {
+      console.log('please introduce all the data in the form');
     }
   }
 

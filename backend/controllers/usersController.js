@@ -1,6 +1,6 @@
-const { rejects } = require("assert");
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
 
 var { User } = require("../models/user.model");
 
@@ -17,27 +17,26 @@ router.login = (req, res) => {
 };
 
 router.register = (req, res, next) => {
-  bcrypt.hash(req.body.password, 10, (err, hash) => {
-    if (err) {
-      return res.status(400).json({ error: err });
+  var user = new User({
+    fullName: req.body.fullName,
+    email: req.body.email,
+    password: req.body.password,
+    isAdmin: req.body.isAdmin,
+  });
+  user.save((err, doc) => {
+    if (!err) {
+      let payload = {
+        id: doc._id,
+      };
+      let secretKey = "secretKey_952456";
+      let token = jwt.sign(payload, secretKey, { expiresIn: "2 days" });
+      res.send(token);
     } else {
-      var user = new User({
-        fullName: req.body.fullName,
-        email: req.body.email,
-        password: req.body.password,
-        isAdmin: req.body.isAdmin,
-      });
-      user.save((err, doc) => {
-        if (!err) {
-          res.send(doc);
-        } else {
-          if (err.code == 11000) {
-            res.status(422).send("Duplicate Email Found");
-          } else {
-            return next(err);
-          }
-        }
-      });
+      if (err.code == 11000) {
+        res.status(422).send("Duplicate Email Found");
+      } else {
+        return next(err);
+      }
     }
   });
 };

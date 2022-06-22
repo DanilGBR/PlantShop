@@ -14,7 +14,9 @@ export class ApiService {
   }
 
   public post(url: string, payload: object) {
-    return this.http.post<any>(`${this.baseUrl}${url}`, payload);
+    return this.http.post<any>(`${this.baseUrl}${url}`, payload, {
+      observe: 'response',
+    });
   }
 
   public put(url: string, payload: object) {
