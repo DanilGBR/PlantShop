@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormControl,
-} from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers';
+import URLs from 'src/app/core/constants/urls';
 
 @Component({
   selector: 'app-sign-up',
@@ -34,30 +30,36 @@ export class SignUpComponent implements OnInit {
     CustomValidators.passwordMatch('password', 'confirmPassword')
   );
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private auth: AuthService,
-    private router: Router
-  ) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
   onRegister() {
-    console.log(this.registerForm);
-    console.log(this.registerForm.controls['fullName'].errors);
-    console.log(this.registerForm.controls['email'].errors);
-    console.log(this.registerForm.controls['password'].errors);
-    console.log(this.registerForm.controls['confirmPassword'].errors);
+    // console.log(this.registerForm);
+    // console.log(this.registerForm.controls['fullName'].errors);
+    // console.log(this.registerForm.controls['email'].errors);
+    // console.log(this.registerForm.controls['password'].errors);
+    // console.log(this.registerForm.controls['confirmPassword'].errors);
 
     const credentials = this.registerForm.getRawValue();
-    credentials.isAdmin = false;
-
     // console.log(credentials);
-    // this.auth.register(credentials).subscribe((response: any) => {
-    //   const token = response.token;
-    //   this.auth.setLoginToken(token);
-    //   this.router.navigate(['']);
-    // });
+
+    if (!this.registerForm.invalid) {
+      this.auth.register(credentials).subscribe(
+        (res) => {
+          this.auth.setLoginToken(credentials);
+          this.router.navigate([URLs.HOME]);
+        },
+        (err) => {
+          console.error(err.error);
+        },
+        () => {
+          console.log('request completed successfully');
+        }
+      );
+    } else {
+      console.log('please introduce all the data in the form');
+    }
   }
 
   resetForm() {
