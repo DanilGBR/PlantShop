@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers';
+import URLs from 'src/app/core/constants/urls';
 
 @Component({
   selector: 'app-sign-up',
@@ -47,10 +48,10 @@ export class SignUpComponent implements OnInit {
       this.auth.register(credentials).subscribe(
         (res) => {
           this.auth.setLoginToken(credentials);
-          this.router.navigate(['']);
+          this.router.navigate([URLs.HOME]);
         },
         (err) => {
-          console.error(err);
+          console.error(err.error);
         },
         () => {
           console.log('request completed successfully');

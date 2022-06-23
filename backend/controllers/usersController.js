@@ -30,10 +30,12 @@ router.register = (req, res, next) => {
       };
       let secretKey = "secretKey_952456";
       let token = jwt.sign(payload, secretKey, { expiresIn: "2 days" });
-      res.send(token);
+      res.status(200).header("Authorization", "Bearer " + token);
     } else {
       if (err.code == 11000) {
-        res.status(422).send("Duplicate Email Found");
+        res
+          .status(422)
+          .send("Duplicate Email Found. Please provide a valid email address!");
       } else {
         return next(err);
       }
