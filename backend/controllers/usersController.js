@@ -1,19 +1,48 @@
+const { rejects } = require("assert");
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const { restart } = require("nodemon");
 
 var { User } = require("../models/user.model");
 
 router.login = (req, res) => {
-  User.find((err, docs) => {
-    if (!err) {
-      res.send(docs);
-    } else {
-      console.log(
-        "Error in Retrieving Users :" + JSON.stringify(err, undefined, 2)
-      );
+  User.findOne(
+    {
+      email: req.body.email,
+    },
+    (err, docs) => {
+      if (err) {
+        console.log(
+          "Error! No email address found!" + JSON.stringify(err, undefined, 2)
+        );
+      } else if (docs) {
+        bcrypt.compare(req.body.password, docs.password, (err, docs) => {
+          if (err) {
+            console.log("Password does not match! Please try again");
+          }
+          if (docs) {
+            let payload = {
+              id: docs._id,
+            };
+            let secretKey = "secretKey_952456";
+            let token = jwt.sign(payload, secretKey, {
+              expiresIn: "2 days",
+            });
+            res.json({
+              message: "Successfully logged in",
+              token: token,
+            });
+          } else {
+            res.json({
+              message: "Login failed! Please try again",
+              reason: "Wrong password",
+            });
+          }
+        });
+      }
     }
-  });
+  );
 };
 
 router.register = (req, res, next) => {
@@ -29,8 +58,14 @@ router.register = (req, res, next) => {
         id: doc._id,
       };
       let secretKey = "secretKey_952456";
-      let token = jwt.sign(payload, secretKey, { expiresIn: "2 days" });
-      res.status(200).header("Authorization", "Bearer " + token);
+      let token = jwt.sign(payload, secretKey, {
+        expiresIn: "2 days",
+      });
+      res.setHeader("Content-Type", "application/json");
+      res.json({
+        message: "Successfully registered!",
+        token: token,
+      });
     } else {
       if (err.code == 11000) {
         res

@@ -4,7 +4,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers';
 import URLs from 'src/app/core/constants/urls';
-
+import { LoginResponse } from 'src/app/core/interfaces/loginResponse';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -29,32 +29,24 @@ export class SignUpComponent implements OnInit {
     },
     CustomValidators.passwordMatch('password', 'confirmPassword')
   );
+  public registrationErrorMessage = '';
 
   constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
   onRegister() {
-    // console.log(this.registerForm);
-    // console.log(this.registerForm.controls['fullName'].errors);
-    // console.log(this.registerForm.controls['email'].errors);
-    // console.log(this.registerForm.controls['password'].errors);
-    // console.log(this.registerForm.controls['confirmPassword'].errors);
-
     const credentials = this.registerForm.getRawValue();
-    // console.log(credentials);
 
     if (!this.registerForm.invalid) {
       this.auth.register(credentials).subscribe(
-        (res) => {
-          this.auth.setLoginToken(credentials);
+        (res: LoginResponse) => {
+          this.auth.setLoginToken(res.token);
           this.router.navigate([URLs.HOME]);
+          this.resetForm();
         },
-        (err) => {
-          console.error(err.error);
-        },
-        () => {
-          console.log('request completed successfully');
+        (err: any) => {
+          this.registrationErrorMessage = err.error;
         }
       );
     } else {
@@ -63,6 +55,11 @@ export class SignUpComponent implements OnInit {
   }
 
   resetForm() {
-    this.registerForm.reset();
+    this.registerForm.reset({
+      fullName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    });
   }
 }
