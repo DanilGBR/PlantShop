@@ -29,7 +29,7 @@ export class SignUpComponent implements OnInit {
     },
     CustomValidators.passwordMatch('password', 'confirmPassword')
   );
-  public registrationErrorMessage = '';
+  public registrationErrorMessage: string = '';
 
   constructor(private auth: AuthService, private router: Router) {}
 
@@ -39,16 +39,18 @@ export class SignUpComponent implements OnInit {
     const credentials = this.registerForm.getRawValue();
 
     if (!this.registerForm.invalid) {
-      this.auth.register(credentials).subscribe(
-        (res: LoginResponse) => {
+      this.auth.register(credentials).subscribe({
+        next: (res: LoginResponse): void => {
           this.auth.setLoginToken(res.token);
+        },
+        error: (err: any): void => {
+          this.registrationErrorMessage = err.error;
+        },
+        complete: () => {
           this.router.navigate([URLs.HOME]);
           this.resetForm();
         },
-        (err: any) => {
-          this.registrationErrorMessage = err.error;
-        }
-      );
+      });
     } else {
       console.log('please introduce all the data in the form');
     }

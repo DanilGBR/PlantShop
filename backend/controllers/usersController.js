@@ -7,17 +7,24 @@ var { User } = require("../models/user.model");
 const tokenSecret = "secretPass_952456";
 
 router.login = (req, res) =>
-  User.findOne({ email: req.body.email }).then((user) => {
-    console.log(user);
-    if (!user) res.status(404).send({ message: "User not found" });
-    else {
-      bcrypt.compare(req.body.password, user.password, function (error, match) {
-        if (error) res.status(500).json(error);
-        else if (match) res.status(200).json({ token: generateToken(user) });
-        else res.status(403).json({ error: "password mismatch" });
-      });
-    }
-  });
+  User.findOne({ email: req.body.email })
+    .then((user) => {
+      console.log(user);
+      if (!user) res.status(404).send({ message: "User not found" });
+      else {
+        bcrypt.compare(
+          req.body.password,
+          user.password,
+          function (error, match) {
+            if (error) res.status(500).json(error);
+            else if (match)
+              res.status(200).json({ token: generateToken(user) });
+            else res.status(403).json({ error: "password mismatch" });
+          }
+        );
+      }
+    })
+    .catch((error) => res.status(500).json(error));
 
 router.register = (req, res, next) => {
   var user = new User({
@@ -42,6 +49,19 @@ router.register = (req, res, next) => {
       }
     }
   });
+};
+
+router.verify = (req, res, next) => {
+  const token = req.headers.authorization;
+  if (!token) res.status(403).json({ error: "Invalid token" });
+  else {
+    jwt.verify(token.split(" ")[1], tokenSecret, (error, value) => {
+      if (error)
+        res.status(500).json({ error: "failed to authenticate token" });
+      req.user = value.data;
+      next();
+    });
+  }
 };
 
 function generateToken(user) {

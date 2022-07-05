@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers';
 import { LoginResponse } from 'src/app/core/interfaces/loginResponse';
@@ -12,29 +17,31 @@ import { LoginPayload } from 'src/app/core/interfaces/loginPayload';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  public form: FormGroup;
+  public loginForm: FormGroup = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      CustomValidators.passwordFormat,
+    ]),
+  });
+  public loginErrorMessage: string = '';
+  private isChecked: boolean = false;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {
-    this.form = this.formBuilder.group({
-      email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, CustomValidators.passwordFormat]],
-    });
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
-  public login(): void {
-    const credentials: LoginPayload = this.form.getRawValue();
+  public onLogin(): void {
+    const credentials: LoginPayload = this.loginForm.getRawValue();
     this.authService.login(credentials).subscribe((response: LoginResponse) => {
-      console.log(response);
       const token = response.token;
-      this.authService.setLoginToken(token);
+      this.authService.setLoginToken(token, this.isChecked);
       this.router.navigate(['']);
     });
+  }
+
+  public onChange(event: any): void {
+    this.isChecked = event.target.checked;
   }
 
   public logout(): void {

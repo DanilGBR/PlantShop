@@ -38,8 +38,15 @@ export class AuthService {
     this.tokenStorageService.clearStorage();
   }
 
-  public setLoginToken(token: string): void {
-    localStorage.setItem('authToken', token);
+  public setLoginToken(
+    token: string,
+    rememberMeChecked: boolean = false
+  ): void {
+    if (rememberMeChecked === true) {
+      localStorage.setItem('authToken', token);
+    } else {
+      sessionStorage.setItem('authToken', token);
+    }
   }
   public getToken(): void {
     localStorage.getItem('authToken');
