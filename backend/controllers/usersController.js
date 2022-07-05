@@ -10,7 +10,8 @@ router.login = (req, res) =>
   User.findOne({ email: req.body.email })
     .then((user) => {
       console.log(user);
-      if (!user) res.status(404).send({ message: "User not found" });
+      if (!user)
+        res.status(404).send({ message: "User with email not found!" });
       else {
         bcrypt.compare(
           req.body.password,
@@ -19,7 +20,7 @@ router.login = (req, res) =>
             if (error) res.status(500).json(error);
             else if (match)
               res.status(200).json({ token: generateToken(user) });
-            else res.status(403).json({ error: "password mismatch" });
+            else res.status(403).json({ message: "Password is invalid!" });
           }
         );
       }

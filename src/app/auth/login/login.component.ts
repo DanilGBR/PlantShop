@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers';
 import { LoginResponse } from 'src/app/core/interfaces/loginResponse';
@@ -33,10 +28,17 @@ export class LoginComponent implements OnInit {
 
   public onLogin(): void {
     const credentials: LoginPayload = this.loginForm.getRawValue();
-    this.authService.login(credentials).subscribe((response: LoginResponse) => {
-      const token = response.token;
-      this.authService.setLoginToken(token, this.isChecked);
-      this.router.navigate(['']);
+    this.authService.login(credentials).subscribe({
+      next: (response: LoginResponse) => {
+        const token = response.token;
+        this.authService.setLoginToken(token, this.isChecked);
+      },
+      error: (error: any) => {
+        this.loginErrorMessage = error.error.message;
+      },
+      complete: () => {
+        this.router.navigate(['']);
+      },
     });
   }
 

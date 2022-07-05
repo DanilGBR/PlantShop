@@ -32,6 +32,10 @@
     ></app-validation-messages>
 
     <hr />
+    <p *ngIf="loginErrorMessage" class="alert">
+      {{ loginErrorMessage }}
+    </p>
+    <hr />
 
     <div class="d-flex justify-content-around">
       <div>
@@ -60,8 +64,9 @@
       Not a member?
       <a href="auth/sign-up">Register</a>
     </p>
+
     <!-- Social login -->
-    <p>or sign in with:</p>
+    <!-- <p>or sign in with:</p>
     <a href="#" class="mx-2" role="button"
       ><i class="fab fa-facebook-f light-blue-text"></i
     ></a>
@@ -73,7 +78,7 @@
     ></a>
     <a href="#" class="mx-2" role="button"
       ><i class="fab fa-github light-blue-text"></i
-    ></a>
+    ></a> -->
   </form>
   <!-- Default form login -->
 </div>

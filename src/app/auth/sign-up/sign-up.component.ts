@@ -52,7 +52,8 @@ export class SignUpComponent implements OnInit {
         },
       });
     } else {
-      console.log('please introduce all the data in the form');
+      this.registrationErrorMessage =
+        'Please introduce all the data in the form';
     }
   }
 
