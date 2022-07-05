@@ -1,49 +1,23 @@
-const { rejects } = require("assert");
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const { restart } = require("nodemon");
+const bcrypt = require("bcrypt");
 
 var { User } = require("../models/user.model");
+const tokenSecret = "secretPass_952456";
 
-router.login = (req, res) => {
-  User.findOne(
-    {
-      email: req.body.email,
-    },
-    (err, docs) => {
-      if (err) {
-        console.log(
-          "Error! No email address found!" + JSON.stringify(err, undefined, 2)
-        );
-      } else if (docs) {
-        bcrypt.compare(req.body.password, docs.password, (err, docs) => {
-          if (err) {
-            console.log("Password does not match! Please try again");
-          }
-          if (docs) {
-            let payload = {
-              id: docs._id,
-            };
-            let secretKey = "secretKey_952456";
-            let token = jwt.sign(payload, secretKey, {
-              expiresIn: "2 days",
-            });
-            res.json({
-              message: "Successfully logged in",
-              token: token,
-            });
-          } else {
-            res.json({
-              message: "Login failed! Please try again",
-              reason: "Wrong password",
-            });
-          }
-        });
-      }
+router.login = (req, res) =>
+  User.findOne({ email: req.body.email }).then((user) => {
+    console.log(user);
+    if (!user) res.status(404).send({ message: "User not found" });
+    else {
+      bcrypt.compare(req.body.password, user.password, function (error, match) {
+        if (error) res.status(500).json(error);
+        else if (match) res.status(200).json({ token: generateToken(user) });
+        else res.status(403).json({ error: "password mismatch" });
+      });
     }
-  );
-};
+  });
 
 router.register = (req, res, next) => {
   var user = new User({
@@ -54,17 +28,9 @@ router.register = (req, res, next) => {
   });
   user.save((err, doc) => {
     if (!err) {
-      let payload = {
-        id: doc._id,
-      };
-      let secretKey = "secretKey_952456";
-      let token = jwt.sign(payload, secretKey, {
-        expiresIn: "2 days",
-      });
-      res.setHeader("Content-Type", "application/json");
       res.json({
         message: "Successfully registered!",
-        token: token,
+        token: generateToken(user),
       });
     } else {
       if (err.code == 11000) {
@@ -77,5 +43,9 @@ router.register = (req, res, next) => {
     }
   });
 };
+
+function generateToken(user) {
+  return jwt.sign({ data: user }, tokenSecret, { expiresIn: "24h" });
+}
 
 module.exports = router;
