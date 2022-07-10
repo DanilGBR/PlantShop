@@ -19,7 +19,10 @@ router.login = (req, res) =>
           function (error, match) {
             if (error) res.status(500).json(error);
             else if (match)
-              res.status(200).json({ token: generateToken(user) });
+              res.status(200).json({
+                message: "Login successful!",
+                token: generateToken(user),
+              });
             else res.status(403).json({ message: "Password is invalid!" });
           }
         );

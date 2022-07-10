@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers';
-import URLs from 'src/app/core/constants/urls';
-import { LoginResponse } from 'src/app/core/interfaces/loginResponse';
+import { LoginResponse } from 'src/app/core/interfaces/auth';
+import URLS from 'src/app/core/constants/urls';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -16,9 +17,7 @@ export class SignUpComponent implements OnInit {
       fullName: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
-        Validators.pattern(
-          /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/
-        ),
+        CustomValidators.fullNameFormat,
       ]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
@@ -30,25 +29,26 @@ export class SignUpComponent implements OnInit {
     CustomValidators.passwordMatch('password', 'confirmPassword')
   );
   public registrationErrorMessage: string = '';
-
-  constructor(private auth: AuthService, private router: Router) {}
-
+  constructor(
+    private authService: AuthService,
+    private routerService: Router,
+    private tokenService: TokenStorageService
+  ) {}
   ngOnInit() {}
-
   onRegister() {
     const credentials = this.registerForm.getRawValue();
 
     if (!this.registerForm.invalid) {
-      this.auth.register(credentials).subscribe({
+      this.authService.register(credentials).subscribe({
         next: (res: LoginResponse): void => {
-          this.auth.setLoginToken(res.token);
+          this.tokenService.setLoginToken(res.token);
         },
         error: (err: any): void => {
           this.registrationErrorMessage = err.error;
         },
         complete: () => {
-          this.router.navigate([URLs.HOME]);
-          this.resetForm();
+          this.routerService.navigate([URLS.HOME]);
+          this.onResetForm();
         },
       });
     } else {
@@ -56,13 +56,15 @@ export class SignUpComponent implements OnInit {
         'Please introduce all the data in the form';
     }
   }
-
-  resetForm() {
+  onResetForm() {
     this.registerForm.reset({
       fullName: '',
       email: '',
       password: '',
       confirmPassword: '',
     });
+  }
+  public goToTerms() {
+    this.routerService.navigate([URLS.CONTACT]);
   }
 }

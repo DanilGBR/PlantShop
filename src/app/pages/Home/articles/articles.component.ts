@@ -20,6 +20,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   private getArticles(): Observable<{ message: string; articles: Article[] }> {
+    // todo: interface
     return this.articlesService.getArticles();
   }
 }

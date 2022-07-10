@@ -12,7 +12,7 @@ export class FeaturedItemComponent implements OnInit {
     description: string;
     imageSource: string;
     price: number;
-  };
+  }; // todo: interface
 
   constructor() {}
 

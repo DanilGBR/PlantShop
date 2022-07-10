@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeaturedComponent implements OnInit {
   featuredList: Array<{
+    //todo: accessors
     id: number;
     description: string;
     imageSource: string;

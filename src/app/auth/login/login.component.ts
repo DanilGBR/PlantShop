@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers';
-import { LoginResponse } from 'src/app/core/interfaces/loginResponse';
+import { LoginResponse, LoginPayload } from 'src/app/core/interfaces/auth';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { LoginPayload } from 'src/app/core/interfaces/loginPayload';
+import URLS from 'src/app/core/constants/urls';
+import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 
+interface authLinks {
+  object: { title: string; url: string };
+}
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,9 +24,13 @@ export class LoginComponent implements OnInit {
     ]),
   });
   public loginErrorMessage: string = '';
-  private isChecked: boolean = false;
+  public rememberMe: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private routerService: Router,
+    private tokenService: TokenStorageService
+  ) {}
 
   ngOnInit() {}
 
@@ -31,22 +39,24 @@ export class LoginComponent implements OnInit {
     this.authService.login(credentials).subscribe({
       next: (response: LoginResponse) => {
         const token = response.token;
-        this.authService.setLoginToken(token, this.isChecked);
+        this.tokenService.setLoginToken(token, this.rememberMe);
       },
       error: (error: any) => {
         this.loginErrorMessage = error.error.message;
       },
       complete: () => {
-        this.router.navigate(['']);
+        this.routerService.navigate([URLS.HOME]);
       },
     });
   }
 
-  public onChange(event: any): void {
-    this.isChecked = event.target.checked;
-  }
-
-  public logout(): void {
+  public onLogout(): void {
     this.authService.logout();
+  }
+  public goToSignup(): void {
+    this.routerService.navigate([URLS.SIGNUP]);
+  }
+  public goToLogin(): void {
+    this.routerService.navigate([URLS.FORGOTPASS]);
   }
 }

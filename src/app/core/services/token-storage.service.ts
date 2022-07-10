@@ -13,19 +13,20 @@ export class TokenStorageService {
     return sessionStorage.getItem(this.TOKEN_KEY);
   }
 
-  setLoginToken(token: string): void {
-    sessionStorage.setItem(this.TOKEN_KEY, token);
-  }
-
-  getUser(): any {
-    // return JSON.parse(sessionStorage.getItem(this.USER_KEY));
-  }
-
-  setUser(user: any): void {
+  public setUser(user: any): void {
     sessionStorage.setItem(this.USER_KEY, JSON.stringify(user));
   }
 
-  clearStorage(): void {
+  public clearStorage(): void {
     sessionStorage.clear();
+  }
+
+  public setLoginToken(
+    token: string,
+    rememberMeChecked: boolean = false
+  ): void {
+    rememberMeChecked
+      ? localStorage.setItem(this.TOKEN_KEY, token)
+      : sessionStorage.setItem(this.TOKEN_KEY, token);
   }
 }

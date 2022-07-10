@@ -7,8 +7,7 @@ import { Article } from 'src/app/core/interfaces/article';
   styleUrls: ['./article.component.css'],
 })
 export class ArticleComponent implements OnInit {
-  @Input()
-  item!: Article;
+  @Input() item!: Article;
 
   constructor() {}
 

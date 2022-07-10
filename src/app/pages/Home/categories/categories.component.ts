@@ -13,6 +13,7 @@ export class CategoriesComponent implements OnInit {
   constructor(private categoriesService: CategoriesService) {}
 
   ngOnInit(): void {
+    // todo: move this to a separate method
     this.categories$ = this.getCategories().pipe(map((res) => res.categories));
   }
 

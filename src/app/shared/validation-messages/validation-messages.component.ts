@@ -9,7 +9,7 @@ import validationMessages, {
   templateUrl: './validation-messages.component.html',
   styleUrls: ['./validation-messages.component.css'],
 })
-export class ValidationMessagesComponent implements OnInit {
+export class ValidationMessagesComponent {
   public message: string = '';
   public validationMessages: ValidationMessagesType = validationMessages;
 
@@ -17,6 +17,4 @@ export class ValidationMessagesComponent implements OnInit {
   @Input() controlName: string = '';
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

@@ -19,7 +19,7 @@ router.use((req, res, next) => {
 
 router.post("/auth/register", controlUser.register);
 router.post("/auth/login", controlUser.login);
-router.get("/auth/verify", controlUser.verify);
+router.post("/auth/verify", controlUser.verify);
 
 router.get("/categories", controlRawData.getCategories);
 router.get("/articles", controlRawData.getArticles);

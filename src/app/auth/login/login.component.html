@@ -1,16 +1,13 @@
 <div class="container d-flex justify-content-center">
-  <!-- Default form login -->
   <form
     [formGroup]="loginForm"
     (ngSubmit)="onLogin()"
-    class="text-center border border-light w-75 p-5"
+    class="text-center border border-light w-50 p-5"
   >
     <p class="h4 mb-4">Sign in</p>
-    <!-- Email -->
     <input
       formControlName="email"
       type="email"
-      id="defaultLoginFormEmail"
       class="form-control mb-1"
       placeholder="E-mail"
     />
@@ -18,11 +15,9 @@
       [control]="loginForm.controls['email']"
       controlName="email"
     ></app-validation-messages>
-    <!-- Password -->
     <input
       formControlName="password"
       type="password"
-      id="defaultLoginFormPassword"
       class="form-control mb-1"
       placeholder="Password"
     />
@@ -36,16 +31,13 @@
       {{ loginErrorMessage }}
     </p>
     <hr />
-
     <div class="d-flex justify-content-around">
       <div>
-        <!-- Remember me -->
         <div class="custom-control custom-checkbox">
           <input
             type="checkbox"
             class="custom-control-input"
-            id="defaultLoginFormRemember"
-            (change)="onChange($event)"
+            (change)="(!rememberMe)"
           />
           <label class="custom-control-label" for="defaultLoginFormRemember"
             >Remember me</label
@@ -53,16 +45,13 @@
         </div>
       </div>
       <div>
-        <!-- Forgot password -->
-        <a href="/auth/forgot-password">Forgot password?</a>
+        <span class="link" (click)="goToLogin()">Forgot password?</span>
       </div>
     </div>
-    <!-- Sign in button -->
     <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
-    <!-- Register -->
     <p>
       Not a member?
-      <a href="auth/sign-up">Register</a>
+      <span class="link" (click)="goToSignup()">Register</span>
     </p>
 
     <!-- Social login -->
@@ -80,5 +69,4 @@
       ><i class="fab fa-github light-blue-text"></i
     ></a> -->
   </form>
-  <!-- Default form login -->
 </div>
