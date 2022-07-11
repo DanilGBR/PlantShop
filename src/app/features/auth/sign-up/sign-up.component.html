@@ -1,0 +1,78 @@
+<div class="container d-flex justify-content-center">
+  <form
+    [formGroup]="registerForm"
+    (ngSubmit)="onRegister()"
+    class="text-center border border-light p-5 w-50"
+  >
+    <p class="h4 mb-4">Sign up</p>
+    <div class="form-row mb-4">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Full name"
+          formControlName="fullName"
+        />
+      </div>
+      <app-validation-messages
+        [control]="registerForm.controls['fullName']"
+        controlName="fullName"
+      ></app-validation-messages>
+    </div>
+    <input
+      type="email"
+      class="form-control mb-4"
+      placeholder="E-mail"
+      formControlName="email"
+    />
+    <app-validation-messages
+      [control]="registerForm.controls['email']"
+      controlName="email"
+    ></app-validation-messages>
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Password"
+      formControlName="password"
+    />
+    <app-validation-messages
+      [control]="registerForm.controls['password']"
+      controlName="password"
+    ></app-validation-messages>
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Confirm Password"
+      formControlName="confirmPassword"
+    />
+    <app-validation-messages
+      [control]="registerForm.controls['confirmPassword']"
+      controlName="confirmPassword"
+    ></app-validation-messages>
+    <hr />
+    <p *ngIf="registrationErrorMessage" class="alert">
+      {{ registrationErrorMessage }}
+    </p>
+    <hr />
+    <button class="btn btn-info my-4 btn-block" type="submit">Register</button>
+    <!-- ! for future use -->
+    <!-- <p>or sign up with:</p>
+    <a href="#" class="mx-2" role="button"
+      ><i class="fab fa-facebook-f light-blue-text"></i
+    ></a>
+    <a href="#" class="mx-2" role="button"
+      ><i class="fab fa-twitter light-blue-text"></i
+    ></a>
+    <a href="#" class="mx-2" role="button"
+      ><i class="fab fa-linkedin-in light-blue-text"></i
+    ></a>
+    <a href="#" class="mx-2" role="button"
+      ><i class="fab fa-github light-blue-text"></i
+    ></a> -->
+    <hr />
+    <p>
+      By clicking <em>Sign up</em> you agree to our
+      <a class="link" (click)="goToTerms()">terms of service</a>
+    </p>
+  </form>
+</div>

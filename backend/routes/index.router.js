@@ -23,5 +23,6 @@ router.post("/auth/verify", controlUser.verify);
 
 router.get("/categories", controlRawData.getCategories);
 router.get("/articles", controlRawData.getArticles);
+router.get("/featured", controlRawData.getFeaturedProducts);
 
 module.exports = router;

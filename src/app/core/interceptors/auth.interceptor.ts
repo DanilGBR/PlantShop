@@ -6,11 +6,11 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private tokenService: TokenStorageService) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -20,8 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   addAuthToken(request: HttpRequest<any>) {
-    console.log('caca');
-    const token = this.authService.getToken();
+    const token = this.tokenService.getToken();
     return request.clone({
       setHeaders: { Authorization: `Bearer ${token}` },
     });

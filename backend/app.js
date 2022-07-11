@@ -9,7 +9,7 @@ const app = express();
 const routesIndex = require("./routes/index.router");
 const e = require("express");
 
-//midleware
+//middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

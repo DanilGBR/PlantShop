@@ -7,15 +7,14 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { ReturnPolicyComponent } from './pages/Resources/return-policy/return-policy.component';
-import { TrackAndOrderComponent } from './pages/Resources/track-and-order/track-and-order.component';
-import { FaqsComponent } from './pages/Resources/faqs/faqs.component';
-import { PrivacyPolicyComponent } from './pages/Resources/privacy-policy/privacy-policy.component';
-import { OurStoryComponent } from './pages/About/our-story/our-story.component';
-import { CareersComponent } from './pages/About/careers/careers.component';
-import { PressComponent } from './pages/About/press/press.component';
+import { ReturnPolicyComponent } from './features/pages/resources/return-policy/return-policy.component';
+import { TrackAndOrderComponent } from './features/pages/resources/track-and-order/track-and-order.component';
+import { FaqsComponent } from './features/pages/resources/faqs/faqs.component';
+import { PrivacyPolicyComponent } from './features/pages/resources/privacy-policy/privacy-policy.component';
+import { CareersComponent } from './features/pages/about/careers/careers.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OurStoryComponent } from './features/pages/about/our-story/our-story.component';
+import { PressComponent } from './features/pages/about/press/press.component';
 
 @NgModule({
   declarations: [
