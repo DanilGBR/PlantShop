@@ -15,7 +15,7 @@ import { CareersComponent } from './features/pages/about/careers/careers.compone
 import { HttpClientModule } from '@angular/common/http';
 import { OurStoryComponent } from './features/pages/about/our-story/our-story.component';
 import { PressComponent } from './features/pages/about/press/press.component';
-
+import { OverlayModule } from '@angular/cdk/overlay';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +34,7 @@ import { PressComponent } from './features/pages/about/press/press.component';
     SharedModule,
     CoreModule,
     HttpClientModule,
+    OverlayModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
