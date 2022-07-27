@@ -24,8 +24,8 @@ img {
   object-position: 50% 50%;
   object-fit: cover;
 }
-img:hover + span {
-  bottom: -10px;
+img:hover + div {
+  bottom: -8px;
   opacity: 1;
 }
 .image-hover img {

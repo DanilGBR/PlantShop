@@ -7,6 +7,7 @@ enum URLS { // URLS
 
   HOME = '/home',
   CATALOGUE = '/catalogue',
+  ARTICLE = '/article',
   CONTACT = '/contact',
 
   SEARCH = '/search',
