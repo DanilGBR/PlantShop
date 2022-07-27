@@ -19,6 +19,7 @@ router.use((req, res, next) => {
 
 router.post("/auth/register", controlUser.register);
 router.post("/auth/login", controlUser.login);
+router.post("/auth/reset-password", controlUser.resetPassword);
 router.post("/auth/verify", controlUser.verify);
 
 router.get("/categories", controlRawData.getCategories);

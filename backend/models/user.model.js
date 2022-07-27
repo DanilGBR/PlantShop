@@ -58,6 +58,13 @@ userSchema.pre("save", function (next) {
   });
 });
 
+// check if email is available
+userSchema.pre("reset", function (next) {
+  userSchema.findOne({ email: email }).then(function (result) {
+    return result !== null;
+  });
+});
+
 var User = mongoose.model("Users", userSchema);
 module.exports = {
   User,

@@ -4,6 +4,7 @@ img {
   margin: 0;
   padding: 0;
   background: #fff;
+  object-position: 50% 50%;
   object-fit: cover;
 }
 

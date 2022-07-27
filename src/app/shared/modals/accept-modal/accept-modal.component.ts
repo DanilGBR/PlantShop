@@ -9,7 +9,5 @@ export class AcceptModalComponent {
   public modalHeader: string = '';
   public modalMessage: string = '';
 
-  constructor(public modalRef: MdbModalRef<AcceptModalComponent>) {
-    console.log(MdbModalRef);
-  }
+  constructor(public modalRef: MdbModalRef<AcceptModalComponent>) {}
 }

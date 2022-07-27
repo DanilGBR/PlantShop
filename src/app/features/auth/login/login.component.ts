@@ -7,9 +7,6 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import URLS from 'src/app/core/constants/urls';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 
-interface authLinks {
-  object: { title: string; url: string };
-}
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

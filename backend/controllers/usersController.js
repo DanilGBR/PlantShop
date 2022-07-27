@@ -9,7 +9,6 @@ const tokenSecret = "secretPass_952456";
 router.login = (req, res) =>
   User.findOne({ email: req.body.email })
     .then((user) => {
-      console.log(user);
       if (!user)
         res.status(404).send({ message: "User with email not found!" });
       else {
@@ -53,6 +52,19 @@ router.register = (req, res, next) => {
       }
     }
   });
+};
+
+router.resetPassword = (req, res) => {
+  console.log(req.body);
+  if (req.body.email) {
+    console.log(req.body);
+    res.status(200).json({ message: "Reset password link successfully sent!" });
+  } else {
+    console.log(req.body);
+    res.status(500).json({
+      message: "Reset password link error! Please check email and try again!",
+    });
+  }
 };
 
 router.verify = (req, res, next) => {

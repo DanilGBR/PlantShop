@@ -14,3 +14,7 @@ export interface User {
   password: string;
   isAdmin: boolean;
 }
+
+export interface ForgotPasswordResponse {
+  message: string;
+}

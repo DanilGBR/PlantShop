@@ -54,7 +54,13 @@
       {{ registrationErrorMessage }}
     </p>
     <hr />
-    <button class="btn btn-info my-4 btn-block" type="submit">Register</button>
+    <button
+      class="btn btn-info my-4 btn-block"
+      type="submit"
+      [disabled]="registerForm.invalid"
+    >
+      Register
+    </button>
     <!-- ! for future use -->
     <!-- <p>or sign up with:</p>
     <a href="#" class="mx-2" role="button"
