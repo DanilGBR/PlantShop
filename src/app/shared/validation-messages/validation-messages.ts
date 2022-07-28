@@ -10,8 +10,8 @@ const validationMessages: ValidationMessagesType = {
       message: 'Full name must be at least 5 characters long',
     },
     {
-      type: 'pattern',
-      message: 'Your full name must contain only letters',
+      type: 'fullNameFormat',
+      message: 'Your full name must contain only letters and  space between',
     },
   ],
   email: [
