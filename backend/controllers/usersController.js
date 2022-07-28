@@ -1,20 +1,34 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 var { User } = require("../models/user.model");
+const tokenSecret = "secretPass_952456";
 
-router.login = (req, res) => {
-  User.find((err, docs) => {
-    if (!err) {
-      res.send(docs);
-    } else {
-      console.log(
-        "Error in Retrieving Users :" + JSON.stringify(err, undefined, 2)
-      );
-    }
-  });
-};
+router.login = (req, res) =>
+  User.findOne({ email: req.body.email })
+    .then((user) => {
+      console.log(user);
+      if (!user)
+        res.status(404).send({ message: "User with email not found!" });
+      else {
+        bcrypt.compare(
+          req.body.password,
+          user.password,
+          function (error, match) {
+            if (error) res.status(500).json(error);
+            else if (match)
+              res.status(200).json({
+                message: "Login successful!",
+                token: generateToken(user),
+              });
+            else res.status(403).json({ message: "Password is invalid!" });
+          }
+        );
+      }
+    })
+    .catch((error) => res.status(500).json(error));
 
 router.register = (req, res, next) => {
   var user = new User({
@@ -25,12 +39,10 @@ router.register = (req, res, next) => {
   });
   user.save((err, doc) => {
     if (!err) {
-      let payload = {
-        id: doc._id,
-      };
-      let secretKey = "secretKey_952456";
-      let token = jwt.sign(payload, secretKey, { expiresIn: "2 days" });
-      res.status(200).header("Authorization", "Bearer " + token);
+      res.json({
+        message: "Successfully registered!",
+        token: generateToken(user),
+      });
     } else {
       if (err.code == 11000) {
         res
@@ -42,5 +54,22 @@ router.register = (req, res, next) => {
     }
   });
 };
+
+router.verify = (req, res, next) => {
+  const token = req.headers.authorization;
+  if (!token) res.status(403).json({ error: "Invalid token" });
+  else {
+    jwt.verify(token.split(" ")[1], tokenSecret, (error, value) => {
+      if (error)
+        res.status(500).json({ error: "failed to authenticate token" });
+      req.user = value.data;
+      next();
+    });
+  }
+};
+
+function generateToken(user) {
+  return jwt.sign({ data: user }, tokenSecret, { expiresIn: "24h" });
+}
 
 module.exports = router;

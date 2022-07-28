@@ -58,4 +58,34 @@ router.getArticles = (req, res) => {
   });
 };
 
+router.getFeaturedProducts = (req, res) => {
+  const featuredProducts = [
+    {
+      id: 1,
+      description: "Hortensie",
+      imageSource:
+        "http://cdn.shopify.com/s/files/1/0109/7996/7072/products/44840-11-BAKIE.jpg?v=1641792985",
+      price: "10",
+    },
+    {
+      id: 2,
+      description: "Ficus Benjamina",
+      imageSource:
+        "https://www.ikea.com/ro/ro/images/products/ficus-benjamina-natasja-planta-naturala-ficus-benjamina-natasja__0653996_pe708225_s5.jpg?f=s",
+      price: "20",
+    },
+    {
+      id: 3,
+      description: "Perennial Succulent",
+      imageSource:
+        "https://cdn.britannica.com/11/202411-050-BF7B0DF0/Ornamental-Echeveria-succulents-in-cultivation.jpg",
+      price: "10",
+    },
+  ];
+  res.status(200).json({
+    MessageChannel: "Featured Products fetched successfully",
+    featuredProducts: featuredProducts,
+  });
+};
+
 module.exports = router;

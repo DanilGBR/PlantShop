@@ -14,25 +14,17 @@
     </button>
     <div class="collapse navbar-collapse nav-center" id="navbarResponsive">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/catalogue">Catalogue</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/contact">Contact</a>
+        <li *ngFor="let link of centerHeaderLinks" class="nav-item active">
+          <span class="nav-link" (click)="navigateTo(link.url)">{{
+            link.title
+          }}</span>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/auth/login">Login/SignUp</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Search</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Chart(0)</a>
+        <li *ngFor="let link of rightHeaderLinks" class="nav-item active">
+          <span class="nav-link" (click)="navigateTo(link.url)">{{
+            link.title
+          }}</span>
         </li>
       </ul>
     </div>

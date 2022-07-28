@@ -18,9 +18,11 @@ router.use((req, res, next) => {
 });
 
 router.post("/auth/register", controlUser.register);
-router.get("/auth/login", controlUser.login);
+router.post("/auth/login", controlUser.login);
+router.post("/auth/verify", controlUser.verify);
 
 router.get("/categories", controlRawData.getCategories);
 router.get("/articles", controlRawData.getArticles);
+router.get("/featured", controlRawData.getFeaturedProducts);
 
 module.exports = router;

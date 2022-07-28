@@ -1,12 +1,16 @@
-enum URLs {
+enum URLS { // URLS
   BASE = '/',
 
-  Login = '/auth/login',
-  SignUp = '/auth/sign-up',
+  LOGIN = '/auth/login',
+  SIGNUP = '/auth/sign-up',
+  FORGOTPASS = '/auth/forgot-password',
 
   HOME = '/home',
   CATALOGUE = '/catalogue',
   CONTACT = '/contact',
+
+  SEARCH = '/search',
+  CART = '/cart',
 
   RETURN_POLICY = '/return-policy',
   TRACK_AN_ORDER = '/track-order',
@@ -18,4 +22,4 @@ enum URLs {
   PRESS = '/press',
 }
 
-export default URLs;
+export default URLS;

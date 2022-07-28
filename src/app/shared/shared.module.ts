@@ -4,16 +4,17 @@ import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AcceptModalComponent } from './modals/accept-modal/accept-modal.component';
 
+const components = [
+  HeaderComponent,
+  FooterComponent,
+  PageNotFoundComponent,
+  AcceptModalComponent,
+];
 @NgModule({
-  declarations: [HeaderComponent, PageNotFoundComponent, FooterComponent],
+  declarations: components,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  exports: [
-    HeaderComponent,
-    PageNotFoundComponent,
-    FooterComponent,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+  exports: [...components, FormsModule, ReactiveFormsModule],
 })
 export class SharedModule {}

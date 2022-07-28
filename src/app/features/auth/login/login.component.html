@@ -1,0 +1,72 @@
+<div class="container d-flex justify-content-center">
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="onLogin()"
+    class="text-center border border-light w-50 p-5"
+  >
+    <p class="h4 mb-4">Sign in</p>
+    <input
+      formControlName="email"
+      type="email"
+      class="form-control mb-1"
+      placeholder="E-mail"
+    />
+    <app-validation-messages
+      [control]="loginForm.controls['email']"
+      controlName="email"
+    ></app-validation-messages>
+    <input
+      formControlName="password"
+      type="password"
+      class="form-control mb-1"
+      placeholder="Password"
+    />
+    <app-validation-messages
+      [control]="loginForm.controls['password']"
+      controlName="password"
+    ></app-validation-messages>
+
+    <hr />
+    <p *ngIf="loginErrorMessage" class="alert">
+      {{ loginErrorMessage }}
+    </p>
+    <hr />
+    <div class="d-flex justify-content-around">
+      <div>
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            (change)="(!rememberMe)"
+          />
+          <label class="custom-control-label" for="defaultLoginFormRemember"
+            >Remember me</label
+          >
+        </div>
+      </div>
+      <div>
+        <span class="link" (click)="goToLogin()">Forgot password?</span>
+      </div>
+    </div>
+    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+    <p>
+      Not a member?
+      <span class="link" (click)="goToSignup()">Register</span>
+    </p>
+
+    <!-- Social login -->
+    <!-- <p>or sign in with:</p>
+    <a href="#" class="mx-2" role="button"
+      ><i class="fab fa-facebook-f light-blue-text"></i
+    ></a>
+    <a href="#" class="mx-2" role="button"
+      ><i class="fab fa-twitter light-blue-text"></i
+    ></a>
+    <a href="#" class="mx-2" role="button"
+      ><i class="fab fa-linkedin-in light-blue-text"></i
+    ></a>
+    <a href="#" class="mx-2" role="button"
+      ><i class="fab fa-github light-blue-text"></i
+    ></a> -->
+  </form>
+</div>
