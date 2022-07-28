@@ -55,16 +55,15 @@ router.register = (req, res, next) => {
 };
 
 router.resetPassword = (req, res) => {
-  console.log(req.body);
-  if (req.body.email) {
-    console.log(req.body);
-    res.status(200).json({ message: "Reset password link successfully sent!" });
-  } else {
-    console.log(req.body);
-    res.status(500).json({
-      message: "Reset password link error! Please check email and try again!",
-    });
-  }
+  User.findOne({ email: req.body.email }).then((user) => {
+    if (!user) {
+      res.status(404).json({ message: "User not found!" });
+    } else {
+      res.status(200).json({
+        message: "Password reset feature not yet implemented on backend",
+      });
+    }
+  });
 };
 
 router.verify = (req, res, next) => {

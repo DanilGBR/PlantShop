@@ -4,6 +4,9 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
+    _id: {
+      type: mongoose.Schema.Types.ObjectId,
+    },
     fullName: {
       type: String,
       required: "Full name can't be empty",
@@ -40,6 +43,8 @@ userSchema.path("email").validate((val) => {
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return emailRegex.test(val);
 }, "Invalid e-mail!");
+
+//check password
 userSchema.path("password").validate((val) => {
   passwordRegex =
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[`~!@#$%^&*()_\-=\[\]{}+.,><?:;'"/|])[a-zA-Z`~!@#$%^&*()_\-\[\]{}=+.,><?:;'"/|\d]{8,}$/;
@@ -59,7 +64,8 @@ userSchema.pre("save", function (next) {
 });
 
 // check if email is available
-userSchema.pre("reset", function (next) {
+userSchema.pre("resetPassword", function (next) {
+  console.log("test email is available");
   userSchema.findOne({ email: email }).then(function (result) {
     return result !== null;
   });

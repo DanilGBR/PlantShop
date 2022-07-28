@@ -6,6 +6,7 @@ import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { AcceptModalComponent } from 'src/app/shared/modals/accept-modal/accept-modal.component';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ForgotPasswordResponse } from 'src/app/core/interfaces/auth';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-forgot-password',
@@ -51,9 +52,8 @@ export class ForgotPasswordComponent implements OnInit {
         next: (response: ForgotPasswordResponse): void => {
           this.openModal('Password reset status', response.message);
         },
-        error: (error: any): void => {
-          console.log(error);
-          this.openModal('Password reset error', error.message);
+        error: (error: HttpErrorResponse): void => {
+          this.openModal('Password reset error', error.error.message);
         },
         complete: () => {
           this.goToLogin();
