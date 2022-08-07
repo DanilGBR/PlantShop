@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
-    _id: {
-      type: mongoose.Schema.Types.ObjectId,
-    },
+    // _id: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    // },
     fullName: {
       type: String,
       required: "Full name can't be empty",
@@ -64,12 +64,12 @@ userSchema.pre("save", function (next) {
 });
 
 // check if email is available
-userSchema.pre("resetPassword", function (next) {
-  console.log("test email is available");
-  userSchema.findOne({ email: email }).then(function (result) {
-    return result !== null;
-  });
-});
+// userSchema.pre("resetPassword", function (next) {
+//   console.log("test email is available");
+//   userSchema.findOne({ email: email }).then(function (result) {
+//     return result !== null;
+//   });
+// });
 
 var User = mongoose.model("Users", userSchema);
 module.exports = {

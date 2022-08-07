@@ -14,6 +14,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/pages/home/home.module').then((m) => m.HomeModule),
   },
+  {
+    path: 'catalogue',
+    loadChildren: () =>
+      import('./features/pages/catalogue/catalogue.module').then(
+        (m) => m.CatalogueModule
+      ),
+  },
   { path: '', component: HomeComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
