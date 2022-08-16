@@ -1,17 +1,20 @@
 const express = require("express");
 const router = express.Router();
 
-var { Products } = require("../models/product.model");
+var { MongoClient } = require("mongodb");
 
 router.getProducts = function (req, res) {
-  console.log(Products.find({}));
-  db.Products.find().toArray(function (err, result) {
-    console.log("im here");
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(result);
-    }
+  MongoClient.connect(process.env.MONGODB_URI, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("PlantRadDB");
+    dbo
+      .collection("Products")
+      .find({})
+      .toArray(function (err, result) {
+        if (err) throw err;
+        res.send(result);
+        db.close();
+      });
   });
 };
 
