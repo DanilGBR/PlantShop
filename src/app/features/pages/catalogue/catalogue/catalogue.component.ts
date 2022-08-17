@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Product } from 'src/app/core/interfaces/product';
 import { ProductService } from 'src/app/core/services/product.service';
 
@@ -13,5 +13,11 @@ export class CatalogueComponent implements OnInit {
 
   constructor(private productService: ProductService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.products$ = this.getProducts().pipe(map((res) => res.products));
+  }
+
+  private getProducts(): Observable<{ message: string; products: Product[] }> {
+    return this.productService.getProducts();
+  }
 }

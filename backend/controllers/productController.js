@@ -12,7 +12,10 @@ router.getProducts = function (req, res) {
       .find({})
       .toArray(function (err, result) {
         if (err) throw err;
-        res.send(result);
+        res.status(200).json({
+          message: "Product objects successfully retrieved",
+          products: result,
+        });
         db.close();
       });
   });
