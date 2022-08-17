@@ -2,13 +2,13 @@
   <form
     [formGroup]="loginForm"
     (ngSubmit)="onLogin()"
-    class="text-center border border-light w-50 p-5"
+    class="text-center border border-light w-50"
   >
-    <p class="h4 mb-4">Sign in</p>
+    <p class="h4 mb-3">Sign in</p>
     <input
       formControlName="email"
       type="email"
-      class="form-control mb-1"
+      class="form-control my-1"
       placeholder="E-mail"
     />
     <app-validation-messages
@@ -18,7 +18,7 @@
     <input
       formControlName="password"
       type="password"
-      class="form-control mb-1"
+      class="form-control my-1"
       placeholder="Password"
     />
     <app-validation-messages
@@ -26,17 +26,15 @@
       controlName="password"
     ></app-validation-messages>
 
-    <hr />
-    <p *ngIf="loginErrorMessage" class="alert">
+    <p *ngIf="loginErrorMessage" class="text-danger">
       {{ loginErrorMessage }}
     </p>
-    <hr />
-    <div class="d-flex justify-content-around">
+    <div class="d-flex justify-content-between my-2">
       <div>
         <div class="custom-control custom-checkbox">
           <input
             type="checkbox"
-            class="custom-control-input"
+            class="custom-control-input me-1"
             (change)="(!rememberMe)"
           />
           <label class="custom-control-label" for="defaultLoginFormRemember"
@@ -48,7 +46,13 @@
         <span class="link" (click)="goToLogin()">Forgot password?</span>
       </div>
     </div>
-    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+    <button
+      class="btn btn-outline-success w-100 my-3 mx-auto"
+      type="submit"
+      [disabled]="loginForm.invalid"
+    >
+      Sign in
+    </button>
     <p>
       Not a member?
       <span class="link" (click)="goToSignup()">Register</span>

@@ -1,5 +1,9 @@
 <div class="image-hover">
-  <img src="{{ listItem.imageSource }}" alt="..." />
+  <img
+    class="img-responsive img-fluid"
+    src="{{ listItem.imageSource }}"
+    alt="{{ listItem.description }}"
+  />
   <div>
     <span class="name-style">{{ listItem.description }}</span>
     <span class="price-style">{{ listItem.price }}&#8364;</span>

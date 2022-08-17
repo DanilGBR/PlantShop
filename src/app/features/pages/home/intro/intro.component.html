@@ -1,20 +1,21 @@
-<div class="container d-flex">
-  <div
-    class="intro-postioning d-flex align-items-center justify-content-between"
-  >
-    <div class="d-flex-row col-md-4">
+<div class="container-fluid d-flex flex-wrap justify-content-center">
+  <div class="row align-items-center">
+    <div
+      class="col-lg-4 col-md-3 col-sm-12 float-md-start text-md-start text-xs-center"
+    >
       <h1>Find perfect plants for your home</h1>
       <p>Beautiful plants that encourage you to get creative.</p>
       <button
         type="button"
         class="btn btn-dark font-monospace"
-        routerLink="/catalogue"
+        (click)="goToCatalogue()"
       >
         Shop Now
       </button>
     </div>
-    <div class="col-md-auto">
+    <div class="col-lg-8 col-md-9 col-sm-12">
       <img
+        class="img-responsive img-fluid float-end"
         src="https://www.indiabullsrealestate.com/blog/wp-content/uploads/2019/08/10-ways-to-decorate-your-home-with-indoor-plants.jpg"
         alt="Room with plants"
       />

@@ -1,7 +1,7 @@
-<span *ngFor="let validation of validationMessages[controlName]">
+<span *ngFor="let validation of validationMessages[controlName]" class="d-flex">
   <span
     *ngIf="control.hasError(validation.type) && control.dirty"
-    class="text-danger font-weight-light"
+    class="font-validator my-1"
     >{{ validation.message }}!
   </span>
 </span>

@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import URLS from 'src/app/core/constants/urls';
-import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { AcceptModalComponent } from 'src/app/shared/modals/accept-modal/accept-modal.component';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { ForgotPasswordResponse } from 'src/app/core/interfaces/auth';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-forgot-password',
@@ -16,7 +19,11 @@ export class ForgotPasswordComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
   });
 
-  constructor(private router: Router, private modalService: MdbModalService) {}
+  constructor(
+    private router: Router,
+    private modalService: MdbModalService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {}
 
@@ -28,13 +35,30 @@ export class ForgotPasswordComponent implements OnInit {
     this.router.navigate([URLS.LOGIN]);
   }
 
-  openModal() {
+  openModal(title: string, message: string) {
     this.modalService.open(AcceptModalComponent, {
       data: {
-        modalHeader: 'Password reset status',
-        modalMessage: 'Password reset link was sent to email address!',
+        modalHeader: title,
+        modalMessage: message,
       },
     });
-    this.router.navigate([URLS.LOGIN]);
+  }
+
+  onResetPassword() {
+    const formData = this.forgotPasswordForm.getRawValue();
+
+    if (!this.forgotPasswordForm.invalid) {
+      this.authService.resetPassword(formData.email).subscribe({
+        next: (response: ForgotPasswordResponse): void => {
+          this.openModal('Password reset status', response.message);
+        },
+        error: (error: HttpErrorResponse): void => {
+          this.openModal('Password reset error', error.error.message);
+        },
+        complete: () => {
+          this.goToLogin();
+        },
+      });
+    }
   }
 }

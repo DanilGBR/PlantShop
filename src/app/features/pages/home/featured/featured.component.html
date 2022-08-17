@@ -1,16 +1,18 @@
-<div class="container d-flex">
+<div class="container-fluid d-flex flex-wrap justify-content-center">
   <div class="row mb-5 justify-content-between">
-    <div class="col-md-2">
+    <div class="col-md-3 col-xs-12 my-5 text-md-left">
       <h2 class="text-align-left">Featured</h2>
       <p>
         Our plants are 100% organic, we don't use pesticides or harmful
         chemicals.
       </p>
-      <br />
       <p>But please don't eat them</p>
       <button type="button">Shop all Favorites</button>
     </div>
-    <div class="col-md-3" *ngFor="let feature of featuredProducts$ | async">
+    <div
+      class="col-md-3 col-xs-12"
+      *ngFor="let feature of featuredProducts$ | async"
+    >
       <app-featured-item [listItem]="feature"></app-featured-item>
     </div>
   </div>

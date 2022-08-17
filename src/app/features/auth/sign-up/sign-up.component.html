@@ -5,56 +5,60 @@
     class="text-center border border-light p-5 w-50"
   >
     <p class="h4 mb-4">Sign up</p>
-    <div class="form-row mb-4">
-      <div class="col">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Full name"
-          formControlName="fullName"
-        />
-      </div>
+    <div class="form-row">
+      <input
+        type="text"
+        class="form-control mb-1"
+        placeholder="Full name"
+        formControlName="fullName"
+      />
       <app-validation-messages
         [control]="registerForm.controls['fullName']"
         controlName="fullName"
       ></app-validation-messages>
+      <input
+        type="email"
+        class="form-control mb-1"
+        placeholder="E-mail"
+        formControlName="email"
+      />
+      <app-validation-messages
+        [control]="registerForm.controls['email']"
+        controlName="email"
+      ></app-validation-messages>
+      <input
+        type="password"
+        class="form-control mb-1"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <app-validation-messages
+        [control]="registerForm.controls['password']"
+        controlName="password"
+      ></app-validation-messages>
+      <input
+        type="password"
+        class="form-control mb-1"
+        placeholder="Confirm Password"
+        formControlName="confirmPassword"
+      />
+      <app-validation-messages
+        [control]="registerForm.controls['confirmPassword']"
+        controlName="confirmPassword"
+      ></app-validation-messages>
     </div>
-    <input
-      type="email"
-      class="form-control mb-4"
-      placeholder="E-mail"
-      formControlName="email"
-    />
-    <app-validation-messages
-      [control]="registerForm.controls['email']"
-      controlName="email"
-    ></app-validation-messages>
-    <input
-      type="password"
-      class="form-control"
-      placeholder="Password"
-      formControlName="password"
-    />
-    <app-validation-messages
-      [control]="registerForm.controls['password']"
-      controlName="password"
-    ></app-validation-messages>
-    <input
-      type="password"
-      class="form-control"
-      placeholder="Confirm Password"
-      formControlName="confirmPassword"
-    />
-    <app-validation-messages
-      [control]="registerForm.controls['confirmPassword']"
-      controlName="confirmPassword"
-    ></app-validation-messages>
-    <hr />
-    <p *ngIf="registrationErrorMessage" class="alert">
-      {{ registrationErrorMessage }}
-    </p>
-    <hr />
-    <button class="btn btn-info my-4 btn-block" type="submit">Register</button>
+    <div *ngIf="registrationErrorMessage">
+      <hr />
+      <p class="alert">{{ registrationErrorMessage }}</p>
+      <hr />
+    </div>
+    <button
+      class="btn btn-outline-success my-4 btn-block"
+      type="submit"
+      [disabled]="registerForm.invalid"
+    >
+      Register
+    </button>
     <!-- ! for future use -->
     <!-- <p>or sign up with:</p>
     <a href="#" class="mx-2" role="button"
@@ -69,7 +73,6 @@
     <a href="#" class="mx-2" role="button"
       ><i class="fab fa-github light-blue-text"></i
     ></a> -->
-    <hr />
     <p>
       By clicking <em>Sign up</em> you agree to our
       <a class="link" (click)="goToTerms()">terms of service</a>

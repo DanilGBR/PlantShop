@@ -9,7 +9,6 @@ const tokenSecret = "secretPass_952456";
 router.login = (req, res) =>
   User.findOne({ email: req.body.email })
     .then((user) => {
-      console.log(user);
       if (!user)
         res.status(404).send({ message: "User with email not found!" });
       else {
@@ -51,6 +50,18 @@ router.register = (req, res, next) => {
       } else {
         return next(err);
       }
+    }
+  });
+};
+
+router.resetPassword = (req, res) => {
+  User.findOne({ email: req.body.email }).then((user) => {
+    if (!user) {
+      res.status(404).json({ message: "User not found!" });
+    } else {
+      res.status(200).json({
+        message: "Password reset feature not yet implemented on backend",
+      });
     }
   });
 };

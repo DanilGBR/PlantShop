@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoginPayload, LoginResponse, User } from '../interfaces/auth';
+import {
+  ForgotPasswordResponse,
+  LoginPayload,
+  LoginResponse,
+  User,
+} from '../interfaces/auth';
 import { ApiService } from './api.service';
 import { TokenStorageService } from './token-storage.service';
 @Injectable({
@@ -22,6 +27,14 @@ export class AuthService {
   public register(user: User): Observable<LoginResponse> {
     user.isAdmin = false; // is admin is false by default for now
     return this._api.post('auth/register', user, { observe: 'body' });
+  }
+
+  public resetPassword(email: string): Observable<ForgotPasswordResponse> {
+    return this._api.post(
+      'auth/reset-password',
+      { email },
+      { observe: 'body' }
+    );
   }
 
   public logout(): void {

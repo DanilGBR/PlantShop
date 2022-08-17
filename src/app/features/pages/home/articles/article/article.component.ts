@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import URLS from 'src/app/core/constants/urls';
 import { Article } from 'src/app/core/interfaces/article';
 
 @Component({
@@ -9,7 +11,11 @@ import { Article } from 'src/app/core/interfaces/article';
 export class ArticleComponent implements OnInit {
   @Input() item!: Article;
 
-  constructor() {}
+  constructor(private routerService: Router) {}
 
   ngOnInit(): void {}
+
+  goToArticleId(): void {
+    this.routerService.navigate([URLS.ARTICLE + '/' + this.item.edition]);
+  }
 }

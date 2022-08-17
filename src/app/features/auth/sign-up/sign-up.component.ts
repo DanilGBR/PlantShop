@@ -6,6 +6,7 @@ import { TokenStorageService } from 'src/app/core/services/token-storage.service
 import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers';
 import { LoginResponse } from 'src/app/core/interfaces/auth';
 import URLS from 'src/app/core/constants/urls';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -43,7 +44,7 @@ export class SignUpComponent implements OnInit {
         next: (res: LoginResponse): void => {
           this.tokenService.setLoginToken(res.token);
         },
-        error: (err: any): void => {
+        error: (err: HttpErrorResponse): void => {
           this.registrationErrorMessage = err.error;
         },
         complete: () => {
