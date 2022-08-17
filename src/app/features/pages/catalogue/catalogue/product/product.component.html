@@ -1,11 +1,14 @@
 <div class="card border-0 mx-4">
-  <div class="position-absolute top-0 start-0 __card-info">
-    {{ product.isNewProduct }}
+  <div
+    *ngIf="product.isNewProduct"
+    class="position-absolute top-0 start-0 __card-info"
+  >
+    New
   </div>
   <div class="mb-2">
     <img
       class="img-responsive img-fluid"
-      src="{{ product.imageSource }}"
+      src="{{ product.image }}"
       alt="{{ product.name }}"
       width="450"
     />
@@ -43,9 +46,6 @@
   <div class="mb-4">
     <p class="card-title h5 text-secondary fw-normal text-left m-0">
       {{ product.name }}
-    </p>
-    <p class="card-text h6 text-secondary fw-light text-left m-0">
-      {{ product.description }}
     </p>
     <p class="card-text h6 text-dark fw-normal text-left mt-1">
       {{ product.price }}

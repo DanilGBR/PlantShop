@@ -1,7 +1,7 @@
 export interface Product {
   name: string;
   description: string;
-  imageSource: string;
+  image: string;
   price: number;
   available: boolean;
   isNewProduct: boolean;
