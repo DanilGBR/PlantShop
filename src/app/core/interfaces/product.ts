@@ -1,6 +1,8 @@
 export interface Product {
   name: string;
-  species: string;
+  description: string;
+  imageSource: string;
   price: number;
-  quantity: number;
+  available: boolean;
+  isNewProduct: boolean;
 }

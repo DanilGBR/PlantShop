@@ -49,3 +49,6 @@
   width: 200px;
   height: 40px;
 }
+.__article-background {
+  background-color: transparent;
+}

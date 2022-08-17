@@ -1,0 +1,19 @@
+.__card-info {
+  display: inline-block;
+  position: relative;
+  transform: translate(0%, 1rem);
+  padding: 0.25rem 0 0.25rem 0.5rem;
+  border-radius: 0px 0.25rem 0.25rem 0px;
+  background-color: white;
+  margin: 0;
+  z-index: 1;
+  width: 20%;
+}
+
+.__btn-style {
+  fill: transparent;
+}
+
+.card:hover .__btn-style {
+  fill: white;
+}

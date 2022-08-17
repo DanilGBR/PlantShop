@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <app-intro></app-intro>
+  <div class="d-flex flex-row">
+    <div class="col-md-2">Filter</div>
+    <div class="d-flex flex-row flex-wrap">
+      <div class="col-md-3 col-xs-12" *ngFor="let product of products$ | async">
+        <app-product></app-product>
+      </div>
+    </div>
+  </div>
+</div>

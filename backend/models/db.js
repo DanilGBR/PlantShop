@@ -8,5 +8,3 @@ mongoose.connect(process.env.MONGODB_URI, (err) => {
     );
   }
 });
-
-require("./user.model");

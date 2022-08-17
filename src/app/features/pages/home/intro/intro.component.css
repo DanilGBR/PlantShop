@@ -1,3 +1,10 @@
-.intro-postioning {
-  margin: 100px 0 0 0;
+.__intro-background {
+  background-image: linear-gradient(
+    to bottom,
+    #ffffff,
+    #fbffff,
+    #f4ffff,
+    #effffd,
+    #f2fff2
+  );
 }

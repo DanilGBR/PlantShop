@@ -2,8 +2,16 @@
   justify-content: center;
 }
 span {
+  color: black;
+  font-weight: 300;
   cursor: pointer;
 }
 span:hover {
-  text-decoration: underline;
+  color: #009063;
+  font-weight: 600;
+  text-shadow: 1rem;
+}
+
+.nav-style {
+  background-image: linear-gradient(to top, hsla(0, 0%, 100%, 0.95), #f2fff2);
 }
