@@ -13,7 +13,7 @@
       width="450"
     />
     <button
-      class="bg-transparent border-0 position-absolute top-50 start-0 translate-middle-y __btn-style"
+      class="bg-transparent border-0 position-absolute top-50 start-0 translate-middle-y __btn-style btn pointer"
     >
       <svg
         width="30"
@@ -28,7 +28,7 @@
       </svg>
     </button>
     <button
-      class="bg-transparent border-0 position-absolute top-50 end-0 translate-middle-y __btn-style"
+      class="bg-transparent border-0 position-absolute top-50 end-0 translate-middle-y __btn-style btn pointer"
     >
       <svg
         width="30"
@@ -44,11 +44,13 @@
     </button>
   </div>
   <div class="mb-4">
-    <p class="card-title h5 text-secondary fw-normal text-left m-0">
+    <span
+      class="card-title h5 text-secondary fw-normal text-left m-0 card-link"
+    >
       {{ product.name }}
-    </p>
+    </span>
     <p class="card-text h6 text-dark fw-normal text-left mt-1">
-      {{ product.price }}
+      {{ product.price }}&#8364;
     </p>
   </div>
 </div>
