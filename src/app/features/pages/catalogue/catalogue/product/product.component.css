@@ -17,3 +17,7 @@
 .card:hover .__btn-style {
   fill: white;
 }
+
+.card-title {
+  cursor: pointer;
+}
