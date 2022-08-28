@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { FeaturedProduct } from 'src/app/core/interfaces/featuredProduct';
+import { Product } from 'src/app/core/interfaces/product';
 import { FeaturedService } from 'src/app/core/services/featured.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { FeaturedService } from 'src/app/core/services/featured.service';
   styleUrls: ['./featured.component.css'],
 })
 export class FeaturedComponent implements OnInit {
-  public featuredProducts$!: Observable<FeaturedProduct[]>;
+  public featuredProducts$!: Observable<Product[]>;
 
   constructor(private featuredService: FeaturedService) {}
 
@@ -21,7 +21,7 @@ export class FeaturedComponent implements OnInit {
 
   private getCategories(): Observable<{
     message: string;
-    featuredProducts: FeaturedProduct[];
+    featuredProducts: Product[];
   }> {
     return this.featuredService.getFeatured();
   }

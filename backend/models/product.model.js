@@ -6,7 +6,8 @@ const ProductSchema = new Schema(
   {
     name: String,
     description: String,
-    image: String,
+    category: String,
+    imageSource: String,
     price: Number,
     available: Boolean,
     isNewProduct: Boolean,
@@ -28,5 +29,5 @@ ProductSchema.pre("save", function (next) {
   next();
 });
 
-let Products = mongoose.model("Product", ProductSchema);
-module.exports = { Products };
+let Product = mongoose.model("Product", ProductSchema);
+module.exports = { Product };
