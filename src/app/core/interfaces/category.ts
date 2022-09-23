@@ -1,5 +1,4 @@
 export interface Category {
-  id: number;
-  description: string;
+  category: string;
   imageSource: string;
 }

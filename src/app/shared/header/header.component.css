@@ -1,15 +1,24 @@
 .nav-center {
   justify-content: center;
 }
+
+a {
+  color: black;
+  font-weight: 600;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 span {
   color: black;
   font-weight: 300;
   cursor: pointer;
 }
+
 span:hover {
   color: #009063;
-  font-weight: 600;
-  text-shadow: 1rem;
+  font-weight: 700;
+  transition: all 0.25s ease-out;
 }
 
 .nav-style {

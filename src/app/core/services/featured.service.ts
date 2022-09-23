@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FeaturedProduct } from '../interfaces/featuredProduct';
+import { Product } from '../interfaces/product';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class FeaturedService {
 
   public getFeatured(): Observable<{
     message: string;
-    featuredProducts: FeaturedProduct[];
+    featuredProducts: Product[];
   }> {
     return this._api.get('featured');
   }

@@ -66,6 +66,6 @@ export class SignUpComponent implements OnInit {
     });
   }
   public goToTerms() {
-    this.routerService.navigate([URLS.CONTACT]);
+    this.routerService.navigate([URLS.PRIVACY]);
   }
 }

@@ -4,6 +4,8 @@ const router = express.Router();
 const controlUser = require("../controllers/usersController");
 const controlRawData = require("../controllers/rawDataController");
 const controlProducts = require("../controllers/productController");
+const controlCategories = require("../controllers/categoriesController");
+const controlArticles = require("../controllers/articlesController");
 
 router.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -23,11 +25,14 @@ router.post("/auth/login", controlUser.login);
 router.post("/auth/reset-password", controlUser.resetPassword);
 router.post("/auth/verify", controlUser.verify);
 
-router.get("/categories", controlRawData.getCategories);
-router.get("/articles", controlRawData.getArticles);
-router.get("/featured", controlRawData.getFeaturedProducts);
-
 router.get("/products", controlProducts.getProducts);
 router.post("/addProducts", controlProducts.postProducts);
+router.get("/featured", controlProducts.getFeaturedProducts);
+
+router.get("/categories", controlCategories.getCategories);
+router.post("/addCategories", controlCategories.postCategories);
+
+router.get("/articles", controlArticles.getArticles);
+router.post("/addArticles", controlArticles.postArticles);
 
 module.exports = router;

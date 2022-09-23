@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './features/pages/home/home/home.component';
+import { ContactUsComponent } from './shared/contact-us/contact-us.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -20,6 +21,10 @@ const routes: Routes = [
       import('./features/pages/catalogue/catalogue.module').then(
         (m) => m.CatalogueModule
       ),
+  },
+  {
+    path: 'contact',
+    component: ContactUsComponent,
   },
   { path: '', component: HomeComponent },
   { path: '**', component: PageNotFoundComponent },

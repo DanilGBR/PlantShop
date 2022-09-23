@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FeaturedProduct } from 'src/app/core/interfaces/featuredProduct';
+import { Product } from 'src/app/core/interfaces/product';
 
 @Component({
   selector: 'app-featured-item',
@@ -7,7 +7,7 @@ import { FeaturedProduct } from 'src/app/core/interfaces/featuredProduct';
   styleUrls: ['./featured-item.component.css'],
 })
 export class FeaturedItemComponent implements OnInit {
-  @Input() listItem!: FeaturedProduct;
+  @Input() listItem!: Product;
   constructor() {}
 
   ngOnInit(): void {}
