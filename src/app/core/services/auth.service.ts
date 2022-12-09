@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   public register(user: User): Observable<LoginResponse> {
-    user.isAdmin = false; // is admin is false by default for now
+    user.isAdmin = false; // isAdmin is false by default for now
     return this._api.post('auth/register', user, { observe: 'body' });
   }
 
