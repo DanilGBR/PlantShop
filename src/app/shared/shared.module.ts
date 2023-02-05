@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AcceptModalComponent } from './modals/accept-modal/accept-modal.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ValidationMessagesComponent } from './validation-messages/validation-messages.component';
 
 const components = [
   HeaderComponent,
@@ -13,6 +14,7 @@ const components = [
   PageNotFoundComponent,
   AcceptModalComponent,
   ContactUsComponent,
+  ValidationMessagesComponent,
 ];
 @NgModule({
   declarations: components,

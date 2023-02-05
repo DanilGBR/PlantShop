@@ -6,16 +6,11 @@ import { LoginComponent } from './login/login.component';
 import { SharedModule } from '../../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { ValidationMessagesComponent } from '../../shared/validation-messages/validation-messages.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
+const components = [ LoginComponent, SignUpComponent, ForgotPasswordComponent,]
 @NgModule({
-  declarations: [
-    LoginComponent,
-    SignUpComponent,
-    ValidationMessagesComponent,
-    ForgotPasswordComponent,
-  ],
+  declarations: components,
   imports: [
     CommonModule,
     AuthRoutingModule,

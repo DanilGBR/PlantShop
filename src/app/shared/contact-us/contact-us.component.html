@@ -3,31 +3,74 @@
     <img src="../../../assets/images/email-image.png" alt="email-image" />
   </div>
 
-  <form class="contact-form">
+  <form
+    class="contact-form"
+    [formGroup]="contactForm"
+    (ngSubmit)="onSubmitContactUs()"
+  >
     <span class="d-block text-center h4 mb-5"> Get in touch </span>
-
     <div class="wrap-input validate-input">
-      <input class="input" type="text" name="name" placeholder="Name" />
+      <input
+        class="input"
+        type="text"
+        placeholder="Full Name"
+        formControlName="fullName"
+      />
       <span class="shadow-input"></span>
+      <app-validation-messages
+        [control]="contactForm.controls['fullName']"
+        controlName="fullName"
+      ></app-validation-messages>
     </div>
 
     <div class="wrap-input validate-input">
-      <input class="input" type="text" name="email" placeholder="Email" />
+      <input
+        class="input"
+        type="email"
+        placeholder="E-mail"
+        formControlName="email"
+      />
       <span class="shadow-input"></span>
+      <app-validation-messages
+        [control]="contactForm.controls['email']"
+        controlName="email"
+      ></app-validation-messages>
     </div>
 
     <div class="wrap-input validate-input">
-      <input class="input" type="text" name="subject" placeholder="Subject" />
+      <input
+        class="input"
+        type="text"
+        placeholder="Subject"
+        formControlName="subject"
+      />
       <span class="shadow-input"></span>
+      <app-validation-messages
+        [control]="contactForm.controls['subject']"
+        controlName="subject"
+      ></app-validation-messages>
     </div>
 
     <div class="wrap-input validate-input">
-      <textarea class="input" name="message" placeholder="Message"></textarea>
+      <textarea
+        class="input"
+        name="message"
+        placeholder="Message"
+        formControlName="message"
+      ></textarea>
       <span class="shadow-input"></span>
+      <app-validation-messages
+        [control]="contactForm.controls['message']"
+        controlName="message"
+      ></app-validation-messages>
     </div>
 
     <div class="container-contact-form-btn">
-      <button class="contact-form-btn">
+      <button
+        class="contact-form-btn"
+        type="submit"
+        [disabled]="contactForm.invalid"
+      >
         <span> Send Email </span>
       </button>
     </div>

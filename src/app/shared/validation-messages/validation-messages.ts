@@ -34,5 +34,19 @@ const validationMessages: ValidationMessagesType = {
         'Your password must contain at least one uppercase, one lowercase, and one number',
     },
   ],
+  subject: [
+    { type: 'required', message: 'Subject is required' },
+    {
+      type: 'minLength',
+      message: 'Subject must be at least 5 characters long',
+    },
+  ],
+  message: [
+    { type: 'required', message: 'Message is required' },
+    {
+      type: 'minLength',
+      message: 'Message must be at least 20 characters long',
+    },
+  ],
 };
 export default validationMessages;
