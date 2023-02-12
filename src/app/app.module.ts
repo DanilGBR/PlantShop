@@ -16,6 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { OurStoryComponent } from './features/pages/about/our-story/our-story.component';
 import { PressComponent } from './features/pages/about/press/press.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +38,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
     CoreModule,
     HttpClientModule,
     OverlayModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],
