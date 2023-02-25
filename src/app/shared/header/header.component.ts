@@ -9,10 +9,12 @@ import centerHeaderLinks from '../constants/centerHeaderLinks';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private router: Router) {}
-
   public centerHeaderLinks = centerHeaderLinks;
   public rightHeaderLinks = rightHeaderLinks;
+
+  public isAdmin = true
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 

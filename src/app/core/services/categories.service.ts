@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../interfaces/category';
+import { GenericResponse } from '../interfaces/apiResponse';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -9,10 +10,7 @@ import { ApiService } from './api.service';
 export class CategoriesService {
   constructor(private _api: ApiService) {}
 
-  public getCategories(): Observable<{
-    message: string;
-    categories: Category[];
-  }> {
+  public getCategories(): Observable<GenericResponse<{categories:Category[]}>> {
     return this._api.get('categories');
   }
 }

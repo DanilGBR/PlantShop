@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import URLS from 'src/app/core/constants/urls';
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { AcceptModalComponent } from 'src/app/shared/modals/accept-modal/accept-modal.component';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { ForgotPasswordResponse } from 'src/app/core/interfaces/auth';
+import { AuthService } from 'src/app/features/auth/services/auth-http.service';
+import { ForgotPasswordResponse } from 'src/app/features/auth/interfaces/auth';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

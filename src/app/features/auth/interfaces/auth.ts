@@ -3,9 +3,12 @@ export interface LoginPayload {
   password: string;
 }
 
-export interface LoginResponse {
-  message: string;
-  token: string;
+export interface UserLoginState {
+  message: string | null;
+  fullName: string | null;
+  token: string | null;
+  isLoggedIn: boolean | null;
+  isAdmin: boolean | null;
 }
 
 export interface User {

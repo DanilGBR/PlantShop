@@ -4,6 +4,7 @@ enum URLS { // URLS
   LOGIN = '/auth/login',
   SIGNUP = '/auth/sign-up',
   FORGOTPASS = '/auth/forgot-password',
+  ADMIN_PANEL = '/admin-panel',
 
   HOME = '/home',
   CATALOGUE = '/catalogue',

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AdminPanelComponent } from '../../auth/components/admin-panel/admin-panel.component';
 import { ArticleComponent } from './articles/article/article.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { CategoriesComponent } from './categories/categories.component';

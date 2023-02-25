@@ -22,9 +22,12 @@
       </ul>
       <ul class="navbar-nav nav-left">
         <li *ngFor="let link of rightHeaderLinks" class="nav-item active">
-          <span class="nav-link h5" (click)="navigateTo(link.url)">{{
-            link.title
-          }}</span>
+          <span
+            *ngIf="isAdmin"
+            class="nav-link h5"
+            (click)="navigateTo(link.url)"
+            >{{ link.title }}</span
+          >
         </li>
       </ul>
     </div>
