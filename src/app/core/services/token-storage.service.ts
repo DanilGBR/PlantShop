@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import jwtDecode from 'jwt-decode';
+import { UserLoginState } from 'src/app/features/auth/interfaces/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -28,5 +30,9 @@ export class TokenStorageService {
     rememberMeChecked
       ? localStorage.setItem(this.TOKEN_KEY, token)
       : sessionStorage.setItem(this.TOKEN_KEY, token);
+  }
+
+  public getDecodedToken(token: string): UserLoginState {
+    return JSON.parse(jwtDecode(token)).data as UserLoginState;
   }
 }

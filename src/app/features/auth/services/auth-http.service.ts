@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   ForgotPasswordResponse,
-  LoginPayload,
-  UserLoginState,
+  LoginCredentials,
+  LoginRegisterResponse,
   User,
 } from '../interfaces/auth';
 import { ApiService } from '../../../core/services/api.service';
@@ -17,11 +17,14 @@ export class AuthService {
     private tokenStorageService: TokenStorageService
   ) {}
 
-  public login(credentials: LoginPayload): Observable<UserLoginState> {
-    return this._api.post('auth/login', credentials);
+  public login(
+    credentials: LoginCredentials
+  ): Observable<LoginRegisterResponse> {
+    const { email, password } = credentials;
+    return this._api.post('auth/login', { email, password });
   }
 
-  public register(user: User): Observable<UserLoginState> {
+  public register(user: User): Observable<LoginRegisterResponse> {
     user.isAdmin = false; // isAdmin is false by default for now
     return this._api.post('auth/register', user, { observe: 'body' });
   }

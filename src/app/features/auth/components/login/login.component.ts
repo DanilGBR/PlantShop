@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers';
-import { LoginPayload } from 'src/app/features/auth/interfaces/auth';
+import { LoginCredentials } from 'src/app/features/auth/interfaces/auth';
 import { AuthService } from 'src/app/features/auth/services/auth-http.service';
 import URLS from 'src/app/core/constants/urls';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
@@ -34,8 +34,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   public onLogin(): void {
-    const payload: LoginPayload = this.loginForm.getRawValue();
-    console.log('compoennt');
+    const payload: LoginCredentials = this.loginForm.getRawValue();
+    payload.rememberMe = this.rememberMe;
     this.authStore.fetchUserLoginState(payload);
     // this.authService.login(credentials).subscribe({
     //   next: (response: LoginResponse) => {

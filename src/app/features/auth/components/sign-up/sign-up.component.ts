@@ -4,7 +4,6 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/features/auth/services/auth-http.service';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers';
-import { UserLoginState } from 'src/app/features/auth/interfaces/auth';
 import URLS from 'src/app/core/constants/urls';
 import { HttpErrorResponse } from '@angular/common/http';
 @Component({

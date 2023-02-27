@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of } from 'rxjs';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
-import { LoginPayload } from '../../interfaces/auth';
 import { AuthService } from '../../services/auth-http.service';
 import * as AuthActions from '../actions/auth.actions';
-import { flatMap, mergeMap, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
+import { UserLoginState } from '../../interfaces/auth';
 
 @Injectable()
 export class AuthenticationEffects {
@@ -31,10 +31,21 @@ export class AuthenticationEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.LoginAction),
-      switchMap((payload: LoginPayload) =>
-        this.authService
-          .login(payload)
-          .pipe(map((response) => AuthActions.LoginActionSuccess(response)))
+      switchMap((payload) =>
+        this.authService.login(payload).pipe(
+          map((response) => {
+            const decodedToken = this.tokenService.getDecodedToken(
+              response.token
+            );
+            const userData: UserLoginState = {
+              fullName: decodedToken.fullName,
+              isAdmin: decodedToken.isAdmin,
+              isLoggedIn: true,
+            };
+
+            return AuthActions.LoginActionSuccess(userData);
+          })
+        )
       ),
       catchError((error: any) => of(AuthActions.LoginActionFailure(error)))
     )

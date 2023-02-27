@@ -8,9 +8,7 @@ import {
 } from '../actions/auth.actions';
 
 export const initialState: UserLoginState = {
-  message: null,
   fullName: null,
-  token: null,
   isLoggedIn: null,
   isAdmin: null,
 };
@@ -21,15 +19,14 @@ export const authReducer = createReducer(
   on(LoginActionSuccess, (state, payload) => ({
     ...state,
     isLoggedIn: true,
-    error: null,
-    message: payload.message,
     fullName: payload.fullName,
+    isAdmin: payload.isAdmin,
+    error: null,
   })),
   on(LoginActionFailure, (state, { error }) => ({
     ...state,
     isLoggedIn: false,
     fullName: null,
-    token: null,
     isAdmin: null,
     error,
   })),

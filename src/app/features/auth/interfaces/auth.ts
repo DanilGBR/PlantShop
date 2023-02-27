@@ -1,12 +1,16 @@
-export interface LoginPayload {
+export interface LoginCredentials {
   email: string;
   password: string;
+  rememberMe?: boolean;
+}
+
+export interface LoginRegisterResponse {
+  message: string;
+  token: string;
 }
 
 export interface UserLoginState {
-  message: string | null;
   fullName: string | null;
-  token: string | null;
   isLoggedIn: boolean | null;
   isAdmin: boolean | null;
 }
