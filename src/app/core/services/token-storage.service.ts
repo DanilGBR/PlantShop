@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import jwtDecode from 'jwt-decode';
-import { UserLoginState } from 'src/app/features/auth/interfaces/auth';
+import {
+  TokenUserInfo,
+  UserLoginState,
+} from 'src/app/features/auth/interfaces/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -33,6 +36,13 @@ export class TokenStorageService {
   }
 
   public getDecodedToken(token: string): UserLoginState {
-    return JSON.parse(jwtDecode(token)).data as UserLoginState;
+    const { fullName, isAdmin } = jwtDecode<TokenUserInfo>(token).data;
+    const userInfo: UserLoginState = {
+      fullName: fullName,
+      isAdmin: isAdmin,
+      isLoggedIn: true,
+    };
+
+    return userInfo;
   }
 }

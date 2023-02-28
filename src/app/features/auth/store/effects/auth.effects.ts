@@ -5,7 +5,8 @@ import { TokenStorageService } from 'src/app/core/services/token-storage.service
 import { AuthService } from '../../services/auth-http.service';
 import * as AuthActions from '../actions/auth.actions';
 import { switchMap } from 'rxjs/operators';
-import { UserLoginState } from '../../interfaces/auth';
+import { Router } from '@angular/router';
+import URLS from 'src/app/core/constants/urls';
 
 @Injectable()
 export class AuthenticationEffects {
@@ -34,16 +35,10 @@ export class AuthenticationEffects {
       switchMap((payload) =>
         this.authService.login(payload).pipe(
           map((response) => {
-            const decodedToken = this.tokenService.getDecodedToken(
-              response.token
-            );
-            const userData: UserLoginState = {
-              fullName: decodedToken.fullName,
-              isAdmin: decodedToken.isAdmin,
-              isLoggedIn: true,
-            };
-
-            return AuthActions.LoginActionSuccess(userData);
+            const userInfo = this.tokenService.getDecodedToken(response.token);
+            this.tokenService.setLoginToken(response.token, payload.rememberMe);
+            this.routerService.navigate([URLS.HOME]);
+            return AuthActions.LoginActionSuccess(userInfo);
           })
         )
       ),
@@ -54,6 +49,7 @@ export class AuthenticationEffects {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private tokenService: TokenStorageService
+    private tokenService: TokenStorageService,
+    private routerService: Router
   ) {}
 }

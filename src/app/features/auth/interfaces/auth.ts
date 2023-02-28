@@ -15,6 +15,22 @@ export interface UserLoginState {
   isAdmin: boolean | null;
 }
 
+export interface TokenUserInfo {
+  data: {
+    createdAt: string;
+    email: string;
+    fullName: string;
+    isAdmin: true;
+    password: string;
+    saltSecret: string;
+    updatedAt: string;
+    __v: number;
+    _id: string;
+  };
+  iat: string;
+  exp: string;
+}
+
 export interface User {
   fullName: string;
   email: string;
