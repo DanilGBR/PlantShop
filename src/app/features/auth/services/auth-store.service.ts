@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { LoginCredentials, UserLoginState } from '../interfaces/auth';
 import { LoginAction, LogoutAction } from '../store/actions/auth.actions';
 
@@ -13,5 +14,9 @@ export class AuthStoreService {
 
   public logoutUser() {
     this.store.dispatch(LogoutAction());
+  }
+
+  public getUserInfo(): Observable<boolean | null> {
+    return this.store.select((state) => state.isAdmin);
   }
 }

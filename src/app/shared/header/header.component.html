@@ -23,7 +23,7 @@
       <ul class="navbar-nav nav-left">
         <li *ngFor="let link of rightHeaderLinks" class="nav-item active">
           <span
-            *ngIf="isAdmin"
+            *ngIf="isAdmin$ | async"
             class="nav-link h5"
             (click)="navigateTo(link.url)"
             >{{ link.title }}</span
