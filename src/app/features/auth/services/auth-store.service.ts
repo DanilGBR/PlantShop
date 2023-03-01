@@ -8,15 +8,18 @@ import { LoginAction, LogoutAction } from '../store/actions/auth.actions';
 export class AuthStoreService {
   constructor(private store: Store<UserLoginState>) {}
 
-  public fetchUserLoginState(payload: LoginCredentials) {
+  public fetchUserLoginState(payload: LoginCredentials): void {
     this.store.dispatch(LoginAction(payload));
   }
 
-  public logoutUser() {
+  public logoutUser(): void {
     this.store.dispatch(LogoutAction());
   }
 
-  public getUserInfo(): Observable<boolean | null> {
-    return this.store.select((state) => state.isAdmin);
+  public isUserAdmin(): Observable<any> {
+    return this.store.select((state: UserLoginState) => {
+      console.log('Get user info', state);
+      return state.isAdmin;
+    });
   }
 }

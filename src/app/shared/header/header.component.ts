@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import rightHeaderLinks from '../constants/rightHeaderLinks';
 import centerHeaderLinks from '../constants/centerHeaderLinks';
 import { AuthStoreService } from 'src/app/features/auth/services/auth-store.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, private authStore: AuthStoreService) {}
 
   ngOnInit(): void {
-    this.isAdmin$ = this.authStore.getUserInfo();
+    this.isAdmin$ = this.authStore.isUserAdmin();
   }
 
   navigateTo(url: string): void {

@@ -21,13 +21,18 @@
         </li>
       </ul>
       <ul class="navbar-nav nav-left">
-        <li *ngFor="let link of rightHeaderLinks" class="nav-item active">
+        <li class="nav-item active">
           <span
             *ngIf="isAdmin$ | async"
+            (click)="navigateTo('/admin-panel')"
             class="nav-link h5"
-            (click)="navigateTo(link.url)"
-            >{{ link.title }}</span
+            >Admin Panel</span
           >
+        </li>
+        <li *ngFor="let link of rightHeaderLinks" class="nav-item active">
+          <span class="nav-link h5" (click)="navigateTo(link.url)">{{
+            link.title
+          }}</span>
         </li>
       </ul>
     </div>
