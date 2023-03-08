@@ -9,6 +9,9 @@ export interface LoginRegisterResponse {
   token: string;
 }
 
+export interface StoreAuth {
+  auth: UserLoginState;
+}
 export interface UserLoginState {
   fullName: string | null;
   isLoggedIn: boolean | null;

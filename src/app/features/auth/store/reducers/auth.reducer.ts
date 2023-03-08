@@ -16,11 +16,11 @@ export const initialState: UserLoginState = {
 export const authReducer = createReducer(
   initialState,
   on(LoginAction, (state) => ({ ...state, error: null })),
-  on(LoginActionSuccess, (state, payload) => ({
+  on(LoginActionSuccess, (state, { fullName, isAdmin }) => ({
     ...state,
     isLoggedIn: true,
-    fullName: payload.fullName,
-    isAdmin: payload.isAdmin,
+    fullName: fullName,
+    isAdmin: isAdmin,
     error: null,
   })),
   on(LoginActionFailure, (state, { error }) => ({
@@ -30,5 +30,5 @@ export const authReducer = createReducer(
     isAdmin: null,
     error,
   })),
-  on(LogoutAction, (state) => initialState)
+  on(LogoutAction, () => initialState)
 );

@@ -4,6 +4,7 @@ import rightHeaderLinks from '../constants/rightHeaderLinks';
 import centerHeaderLinks from '../constants/centerHeaderLinks';
 import { AuthStoreService } from 'src/app/features/auth/services/auth-store.service';
 import { Observable, of } from 'rxjs';
+import { StoreAuth } from 'src/app/features/auth/interfaces/auth';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ import { Observable, of } from 'rxjs';
 export class HeaderComponent implements OnInit {
   public centerHeaderLinks = centerHeaderLinks;
   public rightHeaderLinks = rightHeaderLinks;
-  public isAdmin$!: Observable<boolean | null>;
+  public isAdmin$!: Observable<boolean>;
 
   constructor(private router: Router, private authStore: AuthStoreService) {}
 
