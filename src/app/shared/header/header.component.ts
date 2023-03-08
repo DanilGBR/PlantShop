@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import rightHeaderLinks from '../constants/rightHeaderLinks';
 import centerHeaderLinks from '../constants/centerHeaderLinks';
 import { AuthStoreService } from 'src/app/features/auth/services/auth-store.service';
-import { Observable, of } from 'rxjs';
-import { StoreAuth } from 'src/app/features/auth/interfaces/auth';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',

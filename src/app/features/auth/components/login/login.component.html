@@ -26,8 +26,8 @@
       controlName="password"
     ></app-validation-messages>
 
-    <p *ngIf="loginErrorMessage" class="text-danger">
-      {{ loginErrorMessage }}
+    <p *ngIf="userLoginState$ | async" class="text-danger">
+      {{ userLoginState$ | async }}
     </p>
     <div class="d-flex justify-content-between my-2">
       <div>

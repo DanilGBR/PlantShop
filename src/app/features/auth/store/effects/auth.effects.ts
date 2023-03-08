@@ -42,7 +42,9 @@ export class AuthenticationEffects {
           })
         )
       ),
-      catchError((error: any) => of(AuthActions.LoginActionFailure(error)))
+      catchError((error: any) => {
+        return of(AuthActions.LoginActionFailure(error));
+      })
     )
   );
 

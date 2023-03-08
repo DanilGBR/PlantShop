@@ -1,17 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers';
-import { LoginCredentials } from 'src/app/features/auth/interfaces/auth';
+import {
+  LoginCredentials,
+  UserLoginState,
+} from 'src/app/features/auth/interfaces/auth';
 import URLS from 'src/app/core/constants/urls';
 import { AuthStoreService } from '../../services/auth-store.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   public loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -20,16 +24,20 @@ export class LoginComponent {
     ]),
     rememberMe: new FormControl(false),
   });
-  public loginErrorMessage: string = '';
+  public userLoginState$!: Observable<UserLoginState>;
 
   constructor(
     private routerService: Router,
     private authStore: AuthStoreService
   ) {}
 
+  ngOnInit() {
+    this.userLoginState$ = this.authStore.fetchLoginState();
+  }
+
   public onLogin(): void {
     const payload: LoginCredentials = this.loginForm.getRawValue();
-    this.authStore.fetchUserLoginState(payload);
+    this.authStore.dispatchLogin(payload);
   }
 
   public onLogout(): void {
