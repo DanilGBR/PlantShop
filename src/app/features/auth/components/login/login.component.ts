@@ -47,6 +47,6 @@ export class LoginComponent implements OnInit {
     this.routerService.navigate([URLS.SIGNUP]);
   }
   public goToLogin(): void {
-    this.routerService.navigate([URLS.FORGOTPASS]);
+    this.routerService.navigate([URLS.FORGOT_PASS]);
   }
 }

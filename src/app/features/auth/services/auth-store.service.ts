@@ -22,6 +22,10 @@ export class AuthStoreService {
     );
   }
 
+  public fetchUser(): Observable<UserLoginState> {
+    return this.store.pipe(select((state: any) => state.auth));
+  }
+
   public logoutUser(): void {
     this.store.dispatch(LogoutAction());
   }
