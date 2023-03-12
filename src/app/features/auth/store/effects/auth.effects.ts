@@ -10,25 +10,6 @@ import URLS from 'src/app/core/constants/urls';
 
 @Injectable()
 export class AuthenticationEffects {
-  // login$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(AuthActions.LoginAction),
-  //     switchMap((payload: LoginPayload) => {
-  //       console.log('payload', payload);
-  //       return this.authService.login(payload).pipe(
-  //         map((response) => {
-  //           console.log('response', response);
-  //           return AuthActions.LoginActionSuccess(response);
-  //         })
-  //       );
-  //     }),
-  //     catchError((error) => {
-  //       console.log('error', error);
-  //       return of(AuthActions.LoginActionFailure({ error }));
-  //     })
-  //   )
-  // );
-
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.LoginAction),

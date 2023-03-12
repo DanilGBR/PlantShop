@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       CustomValidators.passwordFormat,
     ]),
     rememberMe: new FormControl(false),
-  });
+  }); // todo: extract this in separate function -> login form = initializeForm() => function returns newFormGroup({....})
   public userLoginState$!: Observable<UserLoginState>;
 
   constructor(
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     private authStore: AuthStoreService
   ) {}
 
-  ngOnInit() {
+  public ngOnInit() {
     this.userLoginState$ = this.authStore.fetchLoginState();
   }
 

@@ -19,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(this.addAuthToken(req));
   }
 
-  addAuthToken(request: HttpRequest<any>) {
+  private addAuthToken(request: HttpRequest<any>) {
     const token = this.tokenService.getToken();
     return request.clone({
       setHeaders: { Authorization: `Bearer ${token}` },

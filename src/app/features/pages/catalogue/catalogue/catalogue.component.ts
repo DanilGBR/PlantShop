@@ -17,7 +17,10 @@ export class CatalogueComponent implements OnInit {
     this.products$ = this.getProducts().pipe(map((res) => res.products));
   }
 
-  private getProducts(): Observable<{ message: string; products: Product[] }> {
+  private getProducts(): Observable<{
+    message: string | null;
+    products: Product[];
+  }> {
     return this.productService.getProducts();
   }
 }

@@ -19,27 +19,40 @@ import { OverlayModule } from '@angular/cdk/overlay';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { categoryReducer } from './app-store/reducers/categories.reducer';
+import { CategoriesEffects } from './app-store/effects/categories.effects';
+import { authReducer } from './features/auth/store/reducers/auth.reducer';
+
+const components = [
+  AppComponent,
+  ReturnPolicyComponent,
+  TrackAndOrderComponent,
+  FaqsComponent,
+  PrivacyPolicyComponent,
+  OurStoryComponent,
+  CareersComponent,
+  PressComponent,
+];
+
+const modules = [
+  BrowserModule,
+  AppRoutingModule,
+  RouterModule,
+  SharedModule,
+  CoreModule,
+  HttpClientModule,
+  OverlayModule,
+];
+
+const reducers = { category: categoryReducer, auth: authReducer };
+
+const effects = [CategoriesEffects];
 @NgModule({
-  declarations: [
-    AppComponent,
-    ReturnPolicyComponent,
-    TrackAndOrderComponent,
-    FaqsComponent,
-    PrivacyPolicyComponent,
-    OurStoryComponent,
-    CareersComponent,
-    PressComponent,
-  ],
+  declarations: [...components],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule,
-    SharedModule,
-    CoreModule,
-    HttpClientModule,
-    OverlayModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
+    ...modules,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot(effects),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -10,7 +10,9 @@ import { ApiService } from './api.service';
 export class FeaturedService {
   constructor(private _api: ApiService) {}
 
-  public getFeatured(): Observable<GenericResponse<{featuredProducts: Product[]}>> {
+  public getFeatured(): Observable<
+    GenericResponse<{ featuredProducts: Product[] }>
+  > {
     return this._api.get('featured');
   }
 }

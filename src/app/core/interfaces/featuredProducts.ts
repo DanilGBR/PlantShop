@@ -4,3 +4,8 @@ export interface FeaturedProduct {
   imageSource: string;
   price: number;
 }
+
+export interface FeaturedProductsResponse {
+  message: string | null;
+  featuredProducts: FeaturedProduct[];
+}

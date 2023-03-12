@@ -27,7 +27,7 @@ export class SignUpComponent implements OnInit {
       confirmPassword: new FormControl('', [Validators.required]),
     },
     CustomValidators.passwordMatch('password', 'confirmPassword')
-  );
+  ); // todo: same as login
   public registrationErrorMessage: string = '';
   constructor(
     private authService: AuthService,

@@ -1,4 +1,3 @@
-
 export type GenericResponse<T> = {
-  message: string;
-} & T
+  message: string | null;
+} & T;
