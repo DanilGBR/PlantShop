@@ -1,8 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import {
-  CategoriesArray,
-  Category,
-} from 'src/app/core/interfaces/productCategories';
+import { Category } from 'src/app/core/interfaces/productCategories';
 import {
   FetchProductCategories,
   FetchProductCategoriesFailure,

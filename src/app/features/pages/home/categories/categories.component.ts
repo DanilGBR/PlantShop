@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import {
-  CategoriesArray,
-  Category,
-} from 'src/app/core/interfaces/productCategories';
+import { Observable } from 'rxjs';
+import { Category } from 'src/app/core/interfaces/productCategories';
 import { CategoriesService } from 'src/app/core/services/categories.service';
 import { ProductsStoreService } from 'src/app/core/services/products-store.service';
 
@@ -25,7 +22,7 @@ export class CategoriesComponent implements OnInit {
     this.productsStore.fetchProductCategories();
   }
 
-  private getCategories(): Observable<CategoriesArray> {
+  private getCategories(): Observable<Category[]> {
     return this.categoriesService.getCategories();
   }
 }

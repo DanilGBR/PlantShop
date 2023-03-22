@@ -10,7 +10,7 @@ export class ProductsStoreService {
     this.store.dispatch(FetchProductCategories());
     return this.store.pipe(
       select((state: any) => {
-        console.log(state);
+        console.log('state:', state);
         return state;
       })
     );

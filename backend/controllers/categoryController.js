@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 var { MongoClient } = require("mongodb");
-var { Category } = require("../models/categories.model");
+var { Category } = require("../models/category.model");
 
 router.getCategories = function (req, res) {
   MongoClient.connect(process.env.MONGODB_URI, function (err, db) {

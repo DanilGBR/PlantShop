@@ -51,6 +51,7 @@ router.getFeaturedProducts = function (req, res) {
     dbo
       .collection("Products")
       .find({})
+      .populate("Category")
       .toArray(function (err, result) {
         if (err) throw err;
         res.status(200).json({

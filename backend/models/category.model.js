@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 //product Schema
 const categorySchema = new Schema(
   {
-    category: String,
+    name: String,
     imageSource: String,
   },
   {

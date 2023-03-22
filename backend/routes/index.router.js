@@ -2,9 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const controlUser = require("../controllers/usersController");
-const controlRawData = require("../controllers/rawDataController");
 const controlProducts = require("../controllers/productController");
-const controlCategories = require("../controllers/categoriesController");
+const controlCategories = require("../controllers/categoryController");
 const controlArticles = require("../controllers/articlesController");
 
 router.use((req, res, next) => {
