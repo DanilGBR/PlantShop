@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { LoginCredentials, UserLoginState } from '../interfaces/auth';
+import { AppState } from 'src/app/core/interfaces/store';
+import { LoginCredentials, UserAuthState } from '../interfaces/auth';
 import { LoginAction, LogoutAction } from '../store/actions/auth.actions';
 
 @Injectable({ providedIn: 'root' })
 export class AuthStoreService {
   constructor(private store: Store) {}
 
-  public dispatchLogin(payload: LoginCredentials): void {
+  public loginUser(payload: LoginCredentials): void {
     this.store.dispatch(LoginAction(payload));
   }
 
-  public fetchLoginState(): Observable<UserLoginState> {
+  public selectLoginState(): Observable<UserAuthState> {
     // TODO: state should have a type assigned here
     return this.store.pipe(
       select((state: any) => {
@@ -22,7 +23,7 @@ export class AuthStoreService {
     );
   }
 
-  public fetchUser(): Observable<UserLoginState> {
+  public fetchUser(): Observable<UserAuthState> {
     return this.store.pipe(select((state: any) => state.auth));
   }
 

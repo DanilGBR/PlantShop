@@ -18,7 +18,6 @@ export class CatalogueComponent implements OnInit {
   }
 
   private getProducts(): Observable<{
-    message: string | null;
     products: Product[];
   }> {
     return this.productService.getProducts();

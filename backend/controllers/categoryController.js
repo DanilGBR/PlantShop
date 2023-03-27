@@ -14,7 +14,6 @@ router.getCategories = function (req, res) {
       .toArray(function (err, result) {
         if (err) throw err;
         res.status(200).json({
-          message: "Categories objects successfully retrieved",
           categories: result,
         });
         db.close();

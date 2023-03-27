@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { UserLoginState } from '../../interfaces/auth';
+import { UserAuthState } from '../../interfaces/auth';
 import {
   LoginAction,
   LoginActionFailure,
@@ -7,10 +7,11 @@ import {
   LogoutAction,
 } from '../actions/auth.actions';
 
-export const initialState: UserLoginState = {
+export const initialState: UserAuthState = {
   fullName: null,
   isLoggedIn: null,
   isAdmin: null,
+  error: null,
 };
 
 export const authReducer = createReducer(

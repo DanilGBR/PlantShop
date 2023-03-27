@@ -22,6 +22,7 @@ import { StoreModule } from '@ngrx/store';
 import { categoryReducer } from './app-store/reducers/categories.reducer';
 import { CategoriesEffects } from './app-store/effects/categories.effects';
 import { authReducer } from './features/auth/store/reducers/auth.reducer';
+import { AppState } from './core/interfaces/store';
 
 const components = [
   AppComponent,
@@ -44,14 +45,14 @@ const modules = [
   OverlayModule,
 ];
 
-const reducers = { category: categoryReducer, auth: authReducer };
+const reducers = { categories: categoryReducer, auth: authReducer };
 
 const effects = [CategoriesEffects];
 @NgModule({
   declarations: [...components],
   imports: [
     ...modules,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot<AppState>(reducers),
     EffectsModule.forRoot(effects),
   ],
   providers: [],

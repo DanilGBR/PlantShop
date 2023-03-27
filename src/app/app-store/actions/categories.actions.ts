@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Category } from 'src/app/core/interfaces/productCategories';
 
 export const FetchProductCategories = createAction(
@@ -8,7 +7,7 @@ export const FetchProductCategories = createAction(
 
 export const FetchProductCategoriesSuccess = createAction(
   '[Categories] Fetch Product Categories Success',
-  props<Observable<Category[]>>()
+  props<{ categories: Category[] }>()
 );
 
 export const FetchProductCategoriesFailure = createAction(

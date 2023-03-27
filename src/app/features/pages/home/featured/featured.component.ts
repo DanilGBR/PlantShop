@@ -20,7 +20,6 @@ export class FeaturedComponent implements OnInit {
   }
 
   private getCategories(): Observable<{
-    message: string | null;
     featuredProducts: Product[];
   }> {
     return this.featuredService.getFeatured();

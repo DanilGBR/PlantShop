@@ -6,22 +6,22 @@ import {
   FetchProductCategoriesSuccess,
 } from '../actions/categories.actions';
 
-interface ProductCategoryInitialState {
+interface CategoriesInitialState {
   categories: Category[];
-  // error: string;
-  // category
-  // numbersof
-  // filters
 }
 
-export const initialState: ProductCategoryInitialState = {
+export const initialState: CategoriesInitialState = {
   categories: [],
 };
 
 export const categoryReducer = createReducer(
   initialState,
   on(FetchProductCategories, (state) => ({ ...state, error: null })),
-  on(FetchProductCategoriesSuccess, (state) => ({ ...state })),
+  on(FetchProductCategoriesSuccess, (state, actions) => ({
+    ...state,
+    categories: actions.categories,
+    error: null,
+  })),
   on(FetchProductCategoriesFailure, (state, { error }) => ({
     ...state,
     error: error,

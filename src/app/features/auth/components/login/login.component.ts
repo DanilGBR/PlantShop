@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/core/helpers/custom-validators.helpers';
 import {
   LoginCredentials,
-  UserLoginState,
+  UserAuthState,
 } from 'src/app/features/auth/interfaces/auth';
 import URLS from 'src/app/core/constants/urls';
 import { AuthStoreService } from '../../services/auth-store.service';
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     ]),
     rememberMe: new FormControl(false),
   }); // todo: extract this in separate function -> login form = initializeForm() => function returns newFormGroup({....})
-  public userLoginState$!: Observable<UserLoginState>;
+  public userLoginState$!: Observable<UserAuthState>;
 
   constructor(
     private routerService: Router,
@@ -32,12 +32,12 @@ export class LoginComponent implements OnInit {
   ) {}
 
   public ngOnInit() {
-    this.userLoginState$ = this.authStore.fetchLoginState();
+    this.userLoginState$ = this.authStore.selectLoginState();
   }
 
   public onLogin(): void {
     const payload: LoginCredentials = this.loginForm.getRawValue();
-    this.authStore.dispatchLogin(payload);
+    this.authStore.loginUser(payload);
   }
 
   public onLogout(): void {

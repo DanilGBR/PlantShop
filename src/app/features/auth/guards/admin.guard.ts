@@ -7,7 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { UserLoginState } from '../interfaces/auth';
+import { UserAuthState } from '../interfaces/auth';
 import { AuthStoreService } from '../services/auth-store.service';
 
 @Injectable({ providedIn: 'root' })
@@ -19,7 +19,7 @@ export class AdminGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> {
     return this.authStore.fetchUser().pipe(
-      map((user: UserLoginState) => {
+      map((user: UserAuthState) => {
         if (user.isLoggedIn && user.isAdmin) {
           return true;
         } else {

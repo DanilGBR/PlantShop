@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { LoginCredentials, UserLoginState } from '../../interfaces/auth';
+import { LoginCredentials, UserAuthState } from '../../interfaces/auth';
 
 export const LoginAction = createAction(
   '[Auth] Login Action',
@@ -7,7 +7,7 @@ export const LoginAction = createAction(
 );
 export const LoginActionSuccess = createAction(
   '[Auth] Login Action Success',
-  props<UserLoginState>()
+  props<UserAuthState>()
 );
 export const LoginActionFailure = createAction(
   '[Auth] Login Action Failure',

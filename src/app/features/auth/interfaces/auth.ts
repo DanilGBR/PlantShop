@@ -10,12 +10,13 @@ export interface LoginRegisterResponse {
 }
 
 export interface StoreAuth {
-  auth: UserLoginState;
+  auth: UserAuthState;
 }
-export interface UserLoginState {
+export interface UserAuthState {
   fullName: string | null;
   isLoggedIn: boolean | null;
   isAdmin: boolean | null;
+  error?: string | { message: string } | null;
 }
 
 export interface TokenUserInfo {

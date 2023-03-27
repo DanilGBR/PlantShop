@@ -9,7 +9,7 @@ import { ApiService } from './api.service';
 export class CategoriesService {
   constructor(private _api: ApiService) {}
 
-  public getCategories(): Observable<Category[]> {
+  public getCategories(): Observable<{ categories: Category[] }> {
     return this._api.get('categories');
   }
 }

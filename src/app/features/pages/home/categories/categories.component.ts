@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CategoriesStoreService } from 'src/app/app-store/services/categories-store.service';
 import { Category } from 'src/app/core/interfaces/productCategories';
-import { CategoriesService } from 'src/app/core/services/categories.service';
-import { ProductsStoreService } from 'src/app/core/services/products-store.service';
 
 @Component({
   selector: 'app-categories',
@@ -10,19 +9,12 @@ import { ProductsStoreService } from 'src/app/core/services/products-store.servi
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
-  public categories$!: Observable<Category[]>;
-  constructor(
-    private categoriesService: CategoriesService,
-    private productsStore: ProductsStoreService
-  ) {}
+  public categories$: Observable<Category[]> =
+    this.categoriesStoreService.selectCategories();
+
+  constructor(private categoriesStoreService: CategoriesStoreService) {}
 
   ngOnInit(): void {
-    // todo: move this to a separate method
-    // this.categories$ = this.getCategories().pipe(map((res) => res.categories));
-    this.productsStore.fetchProductCategories();
-  }
-
-  private getCategories(): Observable<Category[]> {
-    return this.categoriesService.getCategories();
+    this.categoriesStoreService.fetchCategories();
   }
 }

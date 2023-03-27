@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import jwtDecode from 'jwt-decode';
 import {
   TokenUserInfo,
-  UserLoginState,
+  UserAuthState,
 } from 'src/app/features/auth/interfaces/auth';
 
 @Injectable({
@@ -35,9 +35,9 @@ export class TokenStorageService {
       : sessionStorage.setItem(this.TOKEN_KEY, token);
   }
 
-  public getDecodedToken(token: string): UserLoginState {
+  public getDecodedToken(token: string): UserAuthState {
     const { fullName, isAdmin } = jwtDecode<TokenUserInfo>(token).data;
-    const userInfo: UserLoginState = {
+    const userInfo: UserAuthState = {
       fullName: fullName,
       isAdmin: isAdmin,
       isLoggedIn: true,
