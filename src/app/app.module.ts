@@ -22,7 +22,6 @@ import { StoreModule } from '@ngrx/store';
 import { categoryReducer } from './app-store/reducers/categories.reducer';
 import { CategoriesEffects } from './app-store/effects/categories.effects';
 import { authReducer } from './features/auth/store/reducers/auth.reducer';
-import { AppState } from './core/interfaces/store';
 
 const components = [
   AppComponent,
@@ -52,7 +51,7 @@ const effects = [CategoriesEffects];
   declarations: [...components],
   imports: [
     ...modules,
-    StoreModule.forRoot<AppState>(reducers),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
   ],
   providers: [],
