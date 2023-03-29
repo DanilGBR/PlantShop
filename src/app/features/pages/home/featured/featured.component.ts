@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { FeaturedProductsStoreService } from 'src/app/app-store/services/featured-store.service';
 import { Product } from 'src/app/core/interfaces/product';
 import { FeaturedService } from 'src/app/core/services/featured.service';
 
@@ -9,19 +10,12 @@ import { FeaturedService } from 'src/app/core/services/featured.service';
   styleUrls: ['./featured.component.css'],
 })
 export class FeaturedComponent implements OnInit {
-  public featuredProducts$!: Observable<Product[]>;
+  public featuredProducts$: Observable<Product[]> =
+    this.featuredStoreService.selectFeaturedProducts();
 
-  constructor(private featuredService: FeaturedService) {}
+  constructor(private featuredStoreService: FeaturedProductsStoreService) {}
 
   ngOnInit(): void {
-    this.featuredProducts$ = this.getCategories().pipe(
-      map((res) => res.featuredProducts)
-    );
-  }
-
-  private getCategories(): Observable<{
-    featuredProducts: Product[];
-  }> {
-    return this.featuredService.getFeatured();
+    this.featuredStoreService.fetchFeaturedProducts();
   }
 }

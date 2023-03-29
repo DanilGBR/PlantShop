@@ -17,10 +17,9 @@ export class CategoriesEffects {
       ofType(CategoriesActions.FetchProductCategories),
       switchMap(() =>
         this.categoriesService.getCategories().pipe(
-          map((response: { categories: Category[] }) => {
-            console.log('effect:', response);
-            return CategoriesActions.FetchProductCategoriesSuccess(response);
-          }),
+          map((response: { categories: Category[] }) =>
+            CategoriesActions.FetchProductCategoriesSuccess(response)
+          ),
           catchError((error: any) =>
             of(CategoriesActions.FetchProductCategoriesFailure(error))
           )

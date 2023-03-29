@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { ArticlesStoreService } from 'src/app/app-store/services/articles-store.service';
 import { Article } from 'src/app/core/interfaces/article';
-import { ArticlesService } from 'src/app/core/services/articles.service';
 
 @Component({
   selector: 'app-articles',
@@ -9,17 +9,12 @@ import { ArticlesService } from 'src/app/core/services/articles.service';
   styleUrls: ['./articles.component.css'],
 })
 export class ArticlesComponent implements OnInit {
-  public articles$!: Observable<Article[]>;
+  public articles$: Observable<Article[]> =
+    this.articleStoreService.selectArticles();
 
-  constructor(private articlesService: ArticlesService) {}
+  constructor(private articleStoreService: ArticlesStoreService) {}
 
   ngOnInit(): void {
-    this.articles$ = this.getArticles().pipe(
-      map((response) => response.articles)
-    );
-  }
-
-  private getArticles(): Observable<{ message: string; articles: Article[] }> {
-    return this.articlesService.getArticles();
+    this.articleStoreService.fetchArticles();
   }
 }
