@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/core/interfaces/store';
-import { LoginCredentials, UserAuthState } from '../../interfaces/auth';
-import { LoginAction, LogoutAction } from '../actions/auth.actions';
+import { LoginCredentials, UserAuthState } from '../interfaces/auth';
+import { LoginAction, LogoutAction } from '../store/actions/auth.actions';
 
 @Injectable({ providedIn: 'root' })
 export class AuthStoreService {

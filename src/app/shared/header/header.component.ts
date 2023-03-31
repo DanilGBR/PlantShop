@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import rightHeaderLinks from '../constants/rightHeaderLinks';
 import centerHeaderLinks from '../constants/centerHeaderLinks';
-import { AuthStoreService } from 'src/app/features/auth/store/services/auth-store.service';
+import { AuthStoreService } from 'src/app/features/auth/services/auth-store.service';
 import { Observable } from 'rxjs';
 
 @Component({

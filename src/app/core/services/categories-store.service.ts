@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { filter, first, Observable } from 'rxjs';
-import { FetchProductCategories } from '../actions/categories.actions';
+import { FetchProductCategories } from '../../features/pages/home/home-store/actions/categories.actions';
 import { Category } from 'src/app/core/interfaces/productCategories';
 
 @Injectable({ providedIn: 'root' })

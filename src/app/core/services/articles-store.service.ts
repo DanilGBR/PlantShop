@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Article } from 'src/app/core/interfaces/article';
-import { FetchArticles } from '../actions/articles.actions';
+import { FetchArticles } from '../../features/pages/home/home-store/actions/articles.actions';
 
 @Injectable({ providedIn: 'root' })
 export class ArticlesStoreService {

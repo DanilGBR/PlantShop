@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { FetchProductCategories } from 'src/app/app-store/actions/categories.actions';
+import { Observable } from 'rxjs';
+import { Product } from 'src/app/core/interfaces/product';
+import { FetchProducts } from '../../features/pages/catalogue/catalog-store/actions/products.actions';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsStoreService {
   constructor(private store: Store) {}
 
-  public fetchProductCategories(): any {
-    this.store.dispatch(FetchProductCategories());
+  public fetchProducts(): void {
+    this.store.dispatch(FetchProducts());
+  }
+
+  public selectProducts(): Observable<Product[]> {
     return this.store.pipe(
       select((state: any) => {
-        console.log('state:', state);
-        return state;
+        return state.products.products;
       })
     );
   }
-
-  public fetchFeaturedProducts() {}
 }

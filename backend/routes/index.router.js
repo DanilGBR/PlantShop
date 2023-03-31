@@ -6,7 +6,7 @@ const controlProducts = require("../controllers/productController");
 const controlCategories = require("../controllers/categoryController");
 const controlArticles = require("../controllers/articlesController");
 
-router.use((req, res, next) => {
+router.use((_, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Methods",
