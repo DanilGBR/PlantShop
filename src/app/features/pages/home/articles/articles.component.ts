@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ArticlesStoreService } from 'src/app/app-store/services/articles-store.service';
+import { ArticlesStoreService } from 'src/app/features/pages/home/home-store/services/articles-store.service';
 import { Article } from 'src/app/core/interfaces/article';
 
 @Component({

@@ -7,8 +7,14 @@ import { IntroComponent } from './intro/intro.component';
 import { ProductComponent } from './catalogue/product/product.component';
 import { FilterSidebarComponent } from './catalogue/filter-sidebar/filter-sidebar.component';
 
+const modules = [CommonModule, CatalogueRoutingModule];
 @NgModule({
-  declarations: [CatalogueComponent, IntroComponent, ProductComponent, FilterSidebarComponent],
-  imports: [CommonModule, CatalogueRoutingModule],
+  declarations: [
+    CatalogueComponent,
+    IntroComponent,
+    ProductComponent,
+    FilterSidebarComponent,
+  ],
+  imports: [...modules],
 })
 export class CatalogueModule {}

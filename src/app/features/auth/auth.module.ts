@@ -8,10 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
-import { authReducer } from './store/reducers/auth.reducer';
-import { AuthenticationEffects } from './store/effects/auth.effects';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
 
 const components = [
   LoginComponent,
@@ -19,16 +15,15 @@ const components = [
   ForgotPasswordComponent,
   AdminPanelComponent,
 ];
+const modules = [
+  CommonModule,
+  AuthRoutingModule,
+  SharedModule,
+  FormsModule,
+  ReactiveFormsModule,
+];
 @NgModule({
   declarations: components,
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    SharedModule,
-    FormsModule,
-    ReactiveFormsModule,
-    StoreModule.forFeature('auth', authReducer),
-    EffectsModule.forFeature([AuthenticationEffects]),
-  ],
+  imports: [...modules],
 })
 export class AuthModule {}

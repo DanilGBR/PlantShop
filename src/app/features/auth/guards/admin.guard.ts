@@ -8,7 +8,7 @@ import {
 } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { UserAuthState } from '../interfaces/auth';
-import { AuthStoreService } from '../services/auth-store.service';
+import { AuthStoreService } from '../store/services/auth-store.service';
 
 @Injectable({ providedIn: 'root' })
 export class AdminGuard implements CanActivate {

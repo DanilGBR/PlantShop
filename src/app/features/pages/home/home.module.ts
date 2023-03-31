@@ -11,18 +11,21 @@ import { HomeComponent } from './home/home.component';
 import { IntroComponent } from './intro/intro.component';
 import { QuoteComponent } from './quote/quote.component';
 
+const components = [
+  HomeComponent,
+  IntroComponent,
+  CategoriesComponent,
+  FeaturedComponent,
+  ArticlesComponent,
+  CategoryItemComponent,
+  QuoteComponent,
+  FeaturedItemComponent,
+  ArticleComponent,
+];
+const modules = [CommonModule, HomeRoutingModule];
+
 @NgModule({
-  declarations: [
-    HomeComponent,
-    IntroComponent,
-    CategoriesComponent,
-    FeaturedComponent,
-    ArticlesComponent,
-    CategoryItemComponent,
-    QuoteComponent,
-    FeaturedItemComponent,
-    ArticleComponent,
-  ],
-  imports: [CommonModule, HomeRoutingModule],
+  declarations: [...components],
+  imports: [...modules],
 })
 export class HomeModule {}

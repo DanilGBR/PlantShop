@@ -7,7 +7,7 @@ import {
   UserAuthState,
 } from 'src/app/features/auth/interfaces/auth';
 import URLS from 'src/app/core/constants/urls';
-import { AuthStoreService } from '../../services/auth-store.service';
+import { AuthStoreService } from '../../store/services/auth-store.service';
 import { Observable } from 'rxjs';
 
 @Component({

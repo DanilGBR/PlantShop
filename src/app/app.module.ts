@@ -16,16 +16,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { OurStoryComponent } from './features/pages/about/our-story/our-story.component';
 import { PressComponent } from './features/pages/about/press/press.component';
 import { OverlayModule } from '@angular/cdk/overlay';
-
-import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { categoryReducer } from './app-store/reducers/categories.reducer';
-import { CategoriesEffects } from './app-store/effects/categories.effects';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthenticationEffects } from './features/auth/store/effects/auth.effects';
 import { authReducer } from './features/auth/store/reducers/auth.reducer';
-import { featuredProductsReducer } from './app-store/reducers/featured.reducer';
-import { FeaturedProductsEffects } from './app-store/effects/featured.effects';
-import { ArticlesEffects } from './app-store/effects/articles.effects';
-import { articlesReducer } from './app-store/reducers/articles.reducer';
+import { ProductEffects } from './features/pages/catalogue/catalog-store/effects/products.effects';
+import { productsReducer } from './features/pages/catalogue/catalog-store/reducers/products.reducer';
+import { ArticlesEffects } from './features/pages/home/home-store/effects/articles.effects';
+import { CategoriesEffects } from './features/pages/home/home-store/effects/categories.effects';
+import { FeaturedProductsEffects } from './features/pages/home/home-store/effects/featured.effects';
+import { articlesReducer } from './features/pages/home/home-store/reducers/articles.reducer';
+import { categoryReducer } from './features/pages/home/home-store/reducers/categories.reducer';
+import { featuredProductsReducer } from './features/pages/home/home-store/reducers/featured.reducer';
 
 const components = [
   AppComponent,
@@ -49,13 +51,21 @@ const modules = [
 ];
 
 const reducers = {
+  auth: authReducer,
   categories: categoryReducer,
   featuredProducts: featuredProductsReducer,
   articles: articlesReducer,
-  auth: authReducer,
+  products: productsReducer,
 };
 
-const effects = [CategoriesEffects, FeaturedProductsEffects, ArticlesEffects];
+const effects = [
+  AuthenticationEffects,
+  CategoriesEffects,
+  FeaturedProductsEffects,
+  ArticlesEffects,
+  ProductEffects,
+];
+
 @NgModule({
   declarations: [...components],
   imports: [
