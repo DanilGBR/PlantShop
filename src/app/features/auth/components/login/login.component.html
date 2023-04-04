@@ -26,8 +26,8 @@
       controlName="password"
     ></app-validation-messages>
 
-    <p *ngIf="loginErrorMessage" class="text-danger">
-      {{ loginErrorMessage }}
+    <p *ngIf="userLoginState$ | async" class="text-danger">
+      {{ userLoginState$ | async }}
     </p>
     <div class="d-flex justify-content-between my-2">
       <div>
@@ -35,7 +35,7 @@
           <input
             type="checkbox"
             class="custom-control-input me-1"
-            (change)="(!rememberMe)"
+            formControlName="rememberMe"
           />
           <label class="custom-control-label" for="defaultLoginFormRemember"
             >Remember me</label

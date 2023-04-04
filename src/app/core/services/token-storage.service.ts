@@ -1,4 +1,9 @@
 import { Injectable } from '@angular/core';
+import jwtDecode from 'jwt-decode';
+import {
+  TokenUserInfo,
+  UserLoginState,
+} from 'src/app/features/auth/interfaces/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -28,5 +33,16 @@ export class TokenStorageService {
     rememberMeChecked
       ? localStorage.setItem(this.TOKEN_KEY, token)
       : sessionStorage.setItem(this.TOKEN_KEY, token);
+  }
+
+  public getDecodedToken(token: string): UserLoginState {
+    const { fullName, isAdmin } = jwtDecode<TokenUserInfo>(token).data;
+    const userInfo: UserLoginState = {
+      fullName: fullName,
+      isAdmin: isAdmin,
+      isLoggedIn: true,
+    };
+
+    return userInfo;
   }
 }

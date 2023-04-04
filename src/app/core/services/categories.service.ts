@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Category } from '../interfaces/category';
+import { CategoriesArray } from '../interfaces/productCategories';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -9,10 +9,7 @@ import { ApiService } from './api.service';
 export class CategoriesService {
   constructor(private _api: ApiService) {}
 
-  public getCategories(): Observable<{
-    message: string;
-    categories: Category[];
-  }> {
+  public getCategories(): Observable<CategoriesArray> {
     return this._api.get('categories');
   }
 }

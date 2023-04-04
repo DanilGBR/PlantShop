@@ -1,9 +1,9 @@
 export interface Product {
-  name: string;
-  description: string;
-  category: string;
-  imageSource: string;
-  price: number;
-  available: boolean;
-  isNewProduct: boolean;
+  name: string | null;
+  description: string | null;
+  category: string | null;
+  imageSource: string | null;
+  price: number | null;
+  available: boolean | null;
+  isNewProduct: boolean | null;
 }

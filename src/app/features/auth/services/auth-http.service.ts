@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   ForgotPasswordResponse,
-  LoginPayload,
-  LoginResponse,
+  LoginCredentials,
+  LoginRegisterResponse,
   User,
 } from '../interfaces/auth';
-import { ApiService } from './api.service';
-import { TokenStorageService } from './token-storage.service';
+import { ApiService } from '../../../core/services/api.service';
+import { TokenStorageService } from '../../../core/services/token-storage.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,15 +17,14 @@ export class AuthService {
     private tokenStorageService: TokenStorageService
   ) {}
 
-  public login(credentials: LoginPayload): Observable<LoginResponse> {
-    return this._api.post('auth/login', {
-      email: credentials.email,
-      password: credentials.password,
-    });
+  public login(
+    credentials: LoginCredentials
+  ): Observable<LoginRegisterResponse> {
+    const { email, password } = credentials;
+    return this._api.post('auth/login', { email, password });
   }
 
-  public register(user: User): Observable<LoginResponse> {
-    user.isAdmin = false; // isAdmin is false by default for now
+  public register(user: User): Observable<LoginRegisterResponse> {
     return this._api.post('auth/register', user, { observe: 'body' });
   }
 

@@ -3,7 +3,8 @@ enum URLS { // URLS
 
   LOGIN = '/auth/login',
   SIGNUP = '/auth/sign-up',
-  FORGOTPASS = '/auth/forgot-password',
+  FORGOT_PASS = '/auth/forgot-password',
+  ADMIN_PANEL = '/auth/admin-panel',
 
   HOME = '/home',
   CATALOGUE = '/catalogue',
